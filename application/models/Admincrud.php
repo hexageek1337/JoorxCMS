@@ -1,41 +1,60 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
- 
+
 class Admincrud extends CI_Model{
+    var $tabel = 'news'; // set your name table
+
     public function __construct() {
         parent::__construct();
         $this->load->database();
     }
 
-    public function GetNews(){
-        $res = $this->db->get('news'); // Kode ini berfungsi untuk memilih tabel yang akan ditampilkan
-        return $res->result_array(); // Kode ini digunakan untuk mengembalikan hasil operasi $res menjadi sebuah array
+    // get all data in table
+    function get_allbarang() {
+        $this->db->from($this->tabel);
+        $query = $this->db->get();
+
+        //cek apakah ada ba
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        }
     }
 
-    public function GetWhere($table, $datas){
-        $res=$this->db->get_where($table, $datas);
-        return $res->result_array();
-    }
- 
-    public function Insert($table,$datas){
-        $res = $this->db->insert($table, $datas); // Kode ini digunakan untuk memasukan record baru kedalam sebuah tabel
-        return $res; // Kode ini digunakan untuk mengembalikan hasil $res
-    }
- 
-    public function editData($table_name,$data,$id) {
-        $this->db->where('id',$id);
-        $edit = $this->db->update($table_name,$data);
-        return $edit;
+    // get data by id in table
+    function get_barang_byid($id) {
+        $this->db->from($this->tabel);
+        $this->db->where('id', $id);
+
+        $query = $this->db->get();
+
+        if ($query->num_rows() == 1) {
+            return $query->result();
+        }
     }
 
-    public function dataEdit($table_name,$id) {
-        $this->db->where('id',$id);
-        $get_user = $this->db->get($table_name);
-        return $get_user->row();
+    // insert data in table
+    function get_insert($data){
+       $this->db->insert($this->tabel, $data);
+       return TRUE;
     }
- 
-    public function Delete($table, $where){
-        $res = $this->db->delete($table, $where); // Kode ini digunakan untuk menghapus record yang sudah ada
-        return $res;
+
+    // update data in table
+    function get_update($id,$data) {
+
+        $this->db->where('id', $id);
+        $this->db->update($this->tabel, $data);
+
+        return TRUE;
+    }
+
+    // delete data in table
+    function del_barang($id) {
+        $this->db->where('id', $id);
+        $this->db->delete($this->tabel);
+        if ($this->db->affected_rows() == 1) {
+
+            return TRUE;
+        }
+        return FALSE;
     }
 }

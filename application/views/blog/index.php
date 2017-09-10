@@ -15,8 +15,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12 post-header-line">
-                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>by <a href="#">Bhaumik</a> | <span class="glyphicon glyphicon-calendar">
-                            </span>Sept 16th, 2012 | <span class="glyphicon glyphicon-comment"></span><a href="#">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>by <a href="#"><?php echo $seekerData['created']; ?></a> | <span class="glyphicon glyphicon-calendar">
+                            </span><?php echo $seekerData['publish']; ?> | <span class="glyphicon glyphicon-comment"></span><a href="#">
                                 3 Comments</a> | <i class="icon-share"></i><a href="#">39 Shares</a> | <span class="glyphicon glyphicon-tags">
                                 </span>Tags : <a href="#"><span class="label label-info">Snipp</span></a> <a href="#">
                                     <span class="label label-info">Bootstrap</span></a> <a href="#"><span class="label label-info">
@@ -26,7 +26,7 @@
                     <div class="row post-content">
                         <div class="col-md-3">
                             <a href="#">
-                                <img src='<?php echo base_url().'assets/images/'.$seekerData['images']; ?>' alt='<?php echo $seekerData['title']; ?>' class="img-responsive img-rounded">
+                                <img src='<?php echo base_url().'assets/images/'.$seekerData['photo']; ?>' alt='<?php echo $seekerData['title']; ?>' class="img-responsive img-rounded">
                             </a>
                         </div>
                         <div class="col-md-9">
