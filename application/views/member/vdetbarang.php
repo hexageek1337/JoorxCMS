@@ -17,7 +17,7 @@
   <div class="panel-heading"><b><?=$titles?></b></div>
   <div class="panel-body">
 
-     <p> <a href="<?=base_url()?>admin/berita" class="btn btn-sm btn-info"><i class="glyphicon glyphicon-repeat"></i> Kembali</a>
+     <p> <a href="<?=base_url()?>member/berita" class="btn btn-sm btn-info"><i class="glyphicon glyphicon-repeat"></i> Kembali</a>
      </p>
 
        <table class="table table-striped">

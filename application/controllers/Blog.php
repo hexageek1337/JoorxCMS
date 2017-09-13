@@ -35,7 +35,7 @@ class Blog extends CI_Controller {
 		$config['num_tag_open'] = '<li>';
 		$config['num_tag_close'] = '</li>';
 
-		$config['cur_tag_open'] = "<li class='disabled'><li class='active'><a href='#'>";
+		$config['cur_tag_open'] = "<li class='disabled'><li class='active'><a onclick='scrolltotop()'>";
 		$config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
 
 		$config['next_link'] = '&raquo;';

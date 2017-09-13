@@ -1,28 +1,33 @@
 <?php
 if($aksi=='aksi_add'){
   $id = "";
-  $title = "";
+  $username = "";
+  $password = "";
   $photo = "";
-  $slug = "";
-  $text = "";
-  $publish = "";
-  date_default_timezone_set("Asia/Jakarta");
-  $date = date("Y-m-d"); ?>
-  <h1 class="header">news</h1>
+  $role = ""; ?>
+  <h1 class="header">User Management</h1>
   <div class="container">
         <!-- Main component for a primary marketing message or call to action -->
   <div class="panel panel-default">
     <div class="panel-heading"><b><?=$titles?></b></div>
     <div class="panel-body">
     <?=$this->session->flashdata('pesan')?>
-    <?php echo form_open_multipart('admin/form/'.$aksi.''); ?>
+    <?php echo form_open_multipart('user/form/'.$aksi.''); ?>
          <table class="table table-striped">
 
            <tr>
-            <td style="width:15%;">Title</td>
+            <td>Username</td>
             <td>
               <div class="col-sm-6">
-                  <input type="text" name="title" class="form-control" placeholder="Masukan judul ...">
+                  <input type="text" name="username" class="form-control" placeholder="Masukan username ...">
+              </div>
+              </td>
+           </tr>
+           <tr>
+            <td>Password</td>
+            <td>
+              <div class="col-sm-6">
+                  <input type="password" name="password" class="form-control" placeholder="Masukan password ...">
               </div>
               </td>
            </tr>
@@ -35,11 +40,14 @@ if($aksi=='aksi_add'){
               </td>
            </tr>
            <tr>
-            <td>Text</td>
+            <td>Role</td>
             <td>
             <div class="col-sm-6">
-              <textarea name="text" cols="120" rows="30" placeholder="Masukan isi konten ..."></textarea>
-              <input type="hidden" name="publish" class="form-control" value="<?=$date?>">
+              <select name="role" class="form-control">
+                <<option selected>-- Select Role --</option>
+                <option value="admin">Admin</option>
+                <option value="member">Member</option>
+              </select>
             </div>
             </td>
            </tr>
@@ -57,30 +65,35 @@ if($aksi=='aksi_add'){
 <?php } else { ?>
   <?php foreach($qdata as $rowdata){
     $id = $rowdata->id;
-    $title = $rowdata->title;
+    $username = $rowdata->username;
     $photo = $rowdata->photo;
-    $slug = $rowdata->slug;
-    $text = $rowdata->text;
-    $publish = $rowdata->publish;
-    date_default_timezone_set("Asia/Jakarta");
-    $date = date("Y-m-d");
+    $password = $rowdata->password;
+    $role = $rowdata->role;
   } ?>
-  <h1 class="header">news</h1>
+  <h1 class="header">User Management</h1>
   <div class="container">
         <!-- Main component for a primary marketing message or call to action -->
   <div class="panel panel-default">
     <div class="panel-heading"><b><?=$titles?></b></div>
     <div class="panel-body">
     <?=$this->session->flashdata('pesan')?>
-    <?php echo form_open_multipart('admin/form/'.$aksi.''); ?>
+    <?php echo form_open_multipart('user/form/'.$aksi.''); ?>
          <table class="table table-striped">
 
            <tr>
-            <td style="width:15%;">Title</td>
+            <td>Username</td>
             <td>
               <div class="col-sm-6">
                   <input type="hidden" name="id" class="form-control" value="<?=$id?>">
-                  <input type="text" name="title" class="form-control" value="<?=$title?>">
+                  <input type="text" name="username" class="form-control" value="<?=$username?>">
+              </div>
+              </td>
+           </tr>
+           <tr>
+            <td>Password</td>
+            <td>
+              <div class="col-sm-6">
+                  <input type="password" name="password" class="form-control" value="<?=$password?>">
               </div>
               </td>
            </tr>
@@ -88,17 +101,20 @@ if($aksi=='aksi_add'){
             <td>Photo</td>
             <td>
               <div class="col-sm-6">
-                  <img class="img-responsive img-rounded" src="<?php echo base_url().'assets/images/'.$photo.''; ?>" alt="<?=$title?>" title="<?=$title?>" width="200" height="200">
+                  <img class="img-responsive img-rounded" src="<?php echo base_url().'assets/images/user/'.$photo.''; ?>" alt="<?=$username?>" title="<?=$username?>" width="200" height="200">
                   <input type="file" name="photo" accept="image/*" class="form-control">
               </div>
               </td>
            </tr>
            <tr>
-            <td>Text</td>
+            <td>Role</td>
             <td>
             <div class="col-sm-6">
-              <textarea name="text" cols="120" rows="30"><?=$text?></textarea>
-              <input type="hidden" name="publish" class="form-control" value="<?=$date?>">
+              <select name="role" class="form-control">
+                <<option>-- Select Role --</option>
+                <option value="admin" <?php if ($role == 'admin') { echo 'selected'; } ?>>Admin</option>
+                <option value="member" <?php if ($role == 'member') { echo 'selected'; } ?>>Member</option>
+              </select>
             </div>
             </td>
            </tr>

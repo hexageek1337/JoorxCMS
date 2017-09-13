@@ -6,7 +6,7 @@
   <div class="panel-heading"><b><?=$titles?></b></div>
   <div class="panel-body">
     <p><?=$this->session->flashdata('pesan')?> </p>
-      <a href="<?=base_url()?>admin/form/add"><button class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-plus"></i> Tambah</button></a>
+      <a href="<?=base_url()?>member/form/add"><button class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-plus"></i> Tambah</button></a>
       <table class="table table-striped">
         <thead>
          <tr>
@@ -31,9 +31,9 @@
           <td><img class="img-responsive img-rounded" src="<?php echo base_url().'assets/images/'.$photos.''; ?>" alt="<?=$rowbarang['title']?>" title="<?=$rowbarang['title']?>" width="200" height="200"></td>
           <td><?=$rowbarang['publish']?></td>
           <td>
-           <a href="<?=base_url()?>admin/form/edit/<?=$rowbarang['id']?>"><button class="btn btn-info btn-sm"><i class="glyphicon glyphicon-pencil"></i></button></a>
-           <a href="<?=base_url()?>admin/detail/<?=$rowbarang['id']?>"><button class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-search"></i></button></a>
-           <a href="<?=base_url()?>admin/hapus/<?=$rowbarang['id']?>"><button class="btn btn-danger btn-sm" onclick="return confirm('Anda Yakin menghapus data ini?')"><i class="glyphicon glyphicon-trash"></i></button></a>
+           <a href="<?=base_url()?>member/form/edit/<?=$rowbarang['id']?>"><button class="btn btn-info btn-sm"><i class="glyphicon glyphicon-pencil"></i></button></a>
+           <a href="<?=base_url()?>member/detail/<?=$rowbarang['id']?>"><button class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-search"></i></button></a>
+           <a href="<?=base_url()?>member/hapus/<?=$rowbarang['id']?>"><button class="btn btn-danger btn-sm" onclick="return confirm('Anda Yakin menghapus data ini?')"><i class="glyphicon glyphicon-trash"></i></button></a>
           </td>
          </tr>
        <?php }}?>

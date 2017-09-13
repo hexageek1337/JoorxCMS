@@ -1,7 +1,7 @@
 <!-- Content JoorxCMS -->
 <h1 class="header">Administrator Login</h1>
 
-<div id="news" class="container">
+<div class="container">
 <div class="form-signin">
 <?php echo validation_errors(); ?>
 <?php echo form_open('login/aksi_login'); ?>
@@ -13,5 +13,4 @@
 <?php echo form_close(); ?>
 </div>
 </div>
-<div class="loginPadding"></div>
 <!-- Content JoorxCMS -->

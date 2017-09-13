@@ -15,7 +15,7 @@ if($aksi=='aksi_add'){
     <div class="panel-heading"><b><?=$titles?></b></div>
     <div class="panel-body">
     <?=$this->session->flashdata('pesan')?>
-    <?php echo form_open_multipart('admin/form/'.$aksi.''); ?>
+    <?php echo form_open_multipart('member/form/'.$aksi.''); ?>
          <table class="table table-striped">
 
            <tr>
@@ -72,7 +72,7 @@ if($aksi=='aksi_add'){
     <div class="panel-heading"><b><?=$titles?></b></div>
     <div class="panel-body">
     <?=$this->session->flashdata('pesan')?>
-    <?php echo form_open_multipart('admin/form/'.$aksi.''); ?>
+    <?php echo form_open_multipart('member/form/'.$aksi.''); ?>
          <table class="table table-striped">
 
            <tr>

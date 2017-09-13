@@ -1,9 +1,12 @@
-* {
+/*!
+ *  Joorx CMS Cascading Style Sheet V1.0
+ *  You can join my project to contributor JoorxCMS
+ */
+html, body {
+    position: relative;
+    min-height: 100%;
     box-sizing: border-box;
-}
-
-body {
-    margin:0;
+    margin-bottom: 60px;
 }
 
 .color-green {
@@ -32,13 +35,34 @@ body {
     text-align: center;
 }
 
+.joorxcms-sidebar {
+    padding-bottom: 5px;
+}
+
 .footer {
-    background-color: #2980b9;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    padding: 14px 16px;
-    bottom: 0;
+  position: fixed;
+  bottom: 0;
+  padding-top: 20px;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #2980b9;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+}
+
+.footer-scroll {
+  position: fixed;
+  bottom: 0;
+  padding-top: 20px;
+  padding-right: 20px;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
 }
 
 .footer a {
@@ -70,10 +94,6 @@ body {
     background-color: #c0392b;
 }
 
-.active {
-    background-color: #27ae60;
-}
-
 .right {
     float:right;
 }
@@ -103,9 +123,9 @@ a:hover {
     text-decoration:none;
 }
 
-.loginPadding {
+.bottomPadding {
     padding-top: 10px;
-    padding-bottom: 300px;
+    padding-bottom: 80px;
 }
 
 .btn {

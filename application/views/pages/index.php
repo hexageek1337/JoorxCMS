@@ -1,5 +1,5 @@
 <!-- Content JoorxCMS -->
-<h1 class="header">Mantap Djiwa Kandas</h1>
+<h1 class="header">Joorx CMS</h1>
 
 <div class="container">
 <div class="image-count center">

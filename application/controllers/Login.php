@@ -1,13 +1,15 @@
-<?php 
+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
-
-		if($this->session->userdata('status') === "login"){
-			redirect(base_url("admin"));
+		$check_role = $this->m_login->get_user($this->session->userdata('userole_id'));
+		if($this->session->userdata('logged_in') === true && $check_role->role === "admin"){
+			redirect(base_url("admin"), 'refresh');
+		} elseif ($this->session->userdata('logged_in') === true && $check_role->role === "member") {
+			redirect(base_url("member"), 'refresh');
 		}
 	}
 
@@ -39,24 +41,29 @@ class Login extends CI_Controller {
 			$this->load->view('templates/footer');
 		}
 
-		$username = $this->input->post('username');
-		$password = $this->input->post('password');
+		$username = addslashes($this->input->post('username'));
+		$password = addslashes($this->input->post('password'));
 		$where = array(
 			'username' => $username,
 			'password' => md5($password)
 			);
 		$cek = $this->m_login->cek_login("admin",$where)->num_rows();
+		$user_id = $this->m_login->get_user_id_from_username($username);
 		if($cek > 0){
 
 			$data_session = array(
+				'userole_id' => $user_id,
 				'nama' => $username,
-				'status' => "login"
+				'logged_in' => true
 				);
 
 			$this->session->set_userdata($data_session);
-
-			redirect(base_url('admin'));
-
+			$user_role = $this->m_login->get_user($this->session->userdata('userole_id'));
+			if ($user_role->role === 'admin') {
+				redirect(base_url('admin'));
+			} else {
+				redirect(base_url('member'));
+			}
 		} else {
 			redirect(base_url('login'));
 		}

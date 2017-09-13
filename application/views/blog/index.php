@@ -31,9 +31,7 @@
                         </div>
                         <div class="col-md-9">
                             <p>
-                                Lorem ipsum dolor sit amet, id nec conceptam conclusionemque. Et eam tation option.
-                                Utinam salutatus ex eum. Ne mea dicit tibique facilisi, ea mei omittam explicari
-                                conclusionemque, ad nobis propriae quaerendum sea.
+                                <?php echo word_limiter($seekerData['text'], 40); ?>
                             </p>
                             <p>
                                 <a href='<?php echo site_url('blog/'.$seekerData['slug']); ?>'><button class="btn btn-default btn-read-more">Read more</button></a></p>
@@ -44,6 +42,9 @@
             <?php endforeach; ?>
         </div>
         <div class="col-md-3">
+            <div class="joorxcms-sidebar">
+                <img class="img-responsive" src="https://4.bp.blogspot.com/-bsQqxqSTSPc/WOjR6MSNgGI/AAAAAAAAABU/Bd90CuCr9PoLUDrRM4yQvbnLxl9J6Bp8gCLcB/s1600/SealGEEK_AvailableAds300x250.jpg" alt="Pasang Iklan Anda disini!" title="Pasang Iklan Anda disini!">
+            </div>
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">

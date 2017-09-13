@@ -51,18 +51,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['login'] = 'login';
 $route['login/aksi_login'] = 'login/aksi_login';
+$route['logout'] = 'logout';
+// Routes Admin
 $route['admin'] = 'admin';
 $route['admin/berita'] = 'admin/berita';
-$route['admin/setting'] = 'admin/setting';
-$route['admin/logout'] = 'admin/logout';
+$route['admin/berita/(:num)'] = 'admin/berita/$1';
+$route['admin/detail/(:num)'] = 'admin/detail/$1';
+$route['admin/hapus/(:num)'] = 'admin/hapus/$1';
 $route['admin/form/(:any)'] = 'admin/form/$1';
 $route['admin/form/(:any)/(:num)'] = 'admin/form/$1/$2';
-$route['admin/(:any)/(:num)'] = 'admin/$1/$2';
-$route['admin/(:any)'] = 'admin/$1';
-$route['admin/(:any)'] = 'admin/view/$1';
+// Routes Member
+$route['member'] = 'member';
+$route['member/berita'] = 'member/berita';
+$route['member/berita/(:num)'] = 'member/berita/$1';
+$route['member/detail/(:num)'] = 'member/detail/$1';
+$route['member/hapus/(:num)'] = 'member/hapus/$1';
+$route['member/form/(:any)'] = 'member/form/$1';
+$route['member/form/(:any)/(:num)'] = 'member/form/$1/$2';
+// Routes User Setting for Admin Role
+$route['user'] = 'user';
+$route['user/(:num)'] = 'user/$1';
+$route['user/detail/(:num)'] = 'user/detail/$1';
+$route['user/hapus/(:num)'] = 'user/hapus/$1';
+$route['user/form/(:any)'] = 'user/form/$1';
+$route['user/form/(:any)/(:num)'] = 'user/form/$1/$2';
+$route['user/index/(:num)'] = 'user/index/$2';
+// Routes Blog
 $route['blog'] = 'blog';
 $route['blog/(:any)'] = 'blog/view/$1';
 $route['blog/index/(:num)'] = 'blog/index/$1';
+// Routes Page Statis
 $route['default_controller'] = 'joorx/view';
 $route['(:any)'] = 'joorx/view/$1';
 $route['404_override'] = '';

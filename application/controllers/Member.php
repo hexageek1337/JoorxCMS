@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 error_reporting(0);
 
-class Admin extends CI_Controller {
+class Member extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
@@ -18,8 +18,8 @@ class Admin extends CI_Controller {
 		$check_role = $this->m_login->get_user($this->session->userdata('userole_id'));
 		if($this->session->userdata('logged_in') != true){
 			redirect(base_url("login"), 'refresh');
-		} elseif ($check_role->role != "admin") {
-			redirect(base_url("member"), 'refresh');
+		} elseif ($check_role->role != "member") {
+			redirect(base_url("admin"), 'refresh');
 		}
 	}
 
@@ -27,9 +27,9 @@ class Admin extends CI_Controller {
 		$data['titles'] = 'Announcement'; //judul title
 		$data['session'] = $this->session->userdata('nama');
 
-		$this->load->view('admin/header',$data); //load views header
-		$this->load->view('admin/index',$data); //load views vbarang
-		$this->load->view('admin/footer'); //load views footer
+		$this->load->view('member/header',$data); //load views header
+		$this->load->view('member/index',$data); //load views vbarang
+		$this->load->view('member/footer'); //load views footer
 	}
 
 	public function berita()
@@ -37,7 +37,7 @@ class Admin extends CI_Controller {
         $data['titles'] = 'Daftar Berita'; //judul title
 				$data['session'] = $this->session->userdata('nama');
 				// Pagination
-				$config['base_url'] = base_url('admin/berita');
+				$config['base_url'] = base_url('member/berita');
 				$config['total_rows'] = $this->admincrud->num_rows('news');
 				$config['per_page'] = 6;
 				$config['num_links'] = $config['total_rows'] / $config['per_page'];
@@ -70,9 +70,9 @@ class Admin extends CI_Controller {
 				$data['qbarang'] = $this->admincrud->get_newspagination('news', $config['per_page'], $this->uri->segment(3));
 				$data['links'] = $this->pagination->create_links();
 
-				$this->load->view('admin/header',$data); //load views header
-        $this->load->view('admin/vbarang',$data); //load views vbarang
-				$this->load->view('admin/footer'); //load views footer
+				$this->load->view('member/header',$data); //load views header
+        $this->load->view('member/vbarang',$data); //load views vbarang
+				$this->load->view('member/footer'); //load views footer
 
     }
 
@@ -114,22 +114,22 @@ class Admin extends CI_Controller {
             $data['aksi'] = 'aksi_add';
 						$data['session'] = $this->session->userdata('nama');
 
-						$this->load->view('admin/header',$data); //load views header
-            $this->load->view('admin/vformbarang',$data,$csrf);
-						$this->load->view('admin/footer'); //load views footer
+						$this->load->view('member/header',$data); //load views header
+            $this->load->view('member/vformbarang',$data,$csrf);
+						$this->load->view('member/footer'); //load views footer
         } else if ($mau_ke == "edit") {//jika uri segmentnya edit
             $data['qdata']  = $this->admincrud->get_barang_byid('news', $idu);
             $data['titles'] = 'Edit Berita';
             $data['aksi'] = 'aksi_edit';
 						$data['session'] = $this->session->userdata('nama');
 
-						$this->load->view('admin/header',$data); //load views header
-            $this->load->view('admin/vformbarang',$data,$csrf);
-						$this->load->view('admin/footer'); //load views footer
+						$this->load->view('member/header',$data); //load views header
+            $this->load->view('member/vformbarang',$data,$csrf);
+						$this->load->view('member/footer'); //load views footer
         } else if ($mau_ke == "aksi_add") {//jika uri segmentnya aksi_add sebagai fungsi untuk insert
 					if (! $this->upload->do_upload('photo')){
 						$this->session->set_flashdata("pesan", "<div class=\"alert alert-danger\" id=\"alert\"><i class=\"glyphicon glyphicon-remove\"></i> Data tidak berhasil di simpan</div>"); //pesan yang tampil setalah berhasil di insert
-            redirect('admin/berita', 'refresh');
+            redirect('member/berita', 'refresh');
 					} else{
 						$uploads = $this->upload->data();
 						$data = array(
@@ -143,12 +143,12 @@ class Admin extends CI_Controller {
 						$data = $this->security->xss_clean($data);
             $this->admincrud->get_insert('news', $data); //model insert data barang
             $this->session->set_flashdata("pesan", "<div class=\"alert alert-success\" id=\"alert\"><i class=\"glyphicon glyphicon-ok\"></i> Data berhasil di simpan</div>"); //pesan yang tampil setalah berhasil di insert
-            redirect('admin/berita', 'refresh');
+            redirect('member/berita', 'refresh');
 					}
         } else if ($mau_ke == "aksi_edit") { //jika uri segmentnya aksi_edit sebagai fungsi untuk update
 					if (! $this->upload->do_upload('photo')){
 						$this->session->set_flashdata("pesan", "<div class=\"alert alert-danger\" id=\"alert\"><i class=\"glyphicon glyphicon-remove\"></i> Data tidak berhasil di update</div>"); //pesan yang tampil setalah berhasil di insert
-            redirect('admin/berita', 'refresh');
+            redirect('member/berita', 'refresh');
 					} else{
 						$photo_old = $this->admincrud->GetWhere('news', array('id' => $id));
 						unlink("assets/images/".$photo_old[0]['photo']);
@@ -164,7 +164,7 @@ class Admin extends CI_Controller {
 						$data = $this->security->xss_clean($data);
             $this->admincrud->get_update('news', $id,$data); //modal update data barang
             $this->session->set_flashdata("pesan", "<div class=\"alert alert-success\" id=\"alert\"><i class=\"glyphicon glyphicon-ok\"></i> Data berhasil di update</div>"); //pesan yang tampil setelah berhasil di update
-            redirect('admin/berita', 'refresh');
+            redirect('member/berita', 'refresh');
 					}
         }
 
@@ -175,9 +175,9 @@ class Admin extends CI_Controller {
         $data['qbarang'] = $this->admincrud->get_barang_byid('news', $id); //query model barang sesuai id
 				$data['session'] = $this->session->userdata('nama');
 
-				$this->load->view('admin/header',$data); //load views header
-        $this->load->view('admin/vdetbarang',$data); //meload views detail barang
-				$this->load->view('admin/footer'); //load views footer
+				$this->load->view('member/header',$data); //load views header
+        $this->load->view('member/vdetbarang',$data); //meload views detail barang
+				$this->load->view('member/footer'); //load views footer
     }
 
     public function hapus($gid){ //fungsi hapus barang sesuai dengan id
@@ -185,6 +185,6 @@ class Admin extends CI_Controller {
 				unlink("assets/images/".$photo_old[0]['photo']);
         $this->admincrud->del_barang('news', $gid);
         $this->session->set_flashdata("pesan", "<div class=\"alert alert-danger\" id=\"alert\"><i class=\"glyphicon glyphicon-ok\"></i> Data berhasil dihapus</div>");
-        redirect('admin/berita', 'refresh');
+        redirect('member/berita', 'refresh');
     }
 }
