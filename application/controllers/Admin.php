@@ -101,6 +101,7 @@ class Admin extends CI_Controller {
         $slug = addslashes($this->slug->create_uri($title));
         $text = $this->input->post('text');
 				$createdby = addslashes($this->session->userdata('nama'));
+				$tags = addslashes($this->input->post('tags'));
         $publish = $this->input->post('publish');
 
 				$csrf = array(
@@ -138,6 +139,7 @@ class Admin extends CI_Controller {
                 'slug' => $slug,
                 'text'=> $text,
 								'created' => $createdby,
+								'tags' => $tags,
                 'publish'  => $publish
             );
 						$data = $this->security->xss_clean($data);
@@ -159,6 +161,7 @@ class Admin extends CI_Controller {
 							'slug' => $slug,
 							'text'=> $text,
 							'created' => $createdby,
+							'tags' => $tags,
 							'publish'  => $publish
             );
 						$data = $this->security->xss_clean($data);

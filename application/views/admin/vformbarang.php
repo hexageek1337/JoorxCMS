@@ -5,6 +5,7 @@ if($aksi=='aksi_add'){
   $photo = "";
   $slug = "";
   $text = "";
+  $tags = "";
   $publish = "";
   date_default_timezone_set("Asia/Jakarta");
   $date = date("Y-m-d"); ?>
@@ -44,6 +45,14 @@ if($aksi=='aksi_add'){
             </td>
            </tr>
            <tr>
+            <td>Tags</td>
+            <td>
+              <div class="col-sm-6">
+                  <input type="text" name="tags" class="form-control" placeholder="Masukan tag yang dipisahkan dengan koma ...">
+              </div>
+              </td>
+           </tr>
+           <tr>
             <td colspan="2">
               <input type="submit" class="btn btn-success" value="Simpan">
               <button type="reset" class="btn btn-default">Batal</button>
@@ -61,6 +70,7 @@ if($aksi=='aksi_add'){
     $photo = $rowdata->photo;
     $slug = $rowdata->slug;
     $text = $rowdata->text;
+    $tags = $rowdata->tags;
     $publish = $rowdata->publish;
     date_default_timezone_set("Asia/Jakarta");
     $date = date("Y-m-d");
@@ -101,6 +111,14 @@ if($aksi=='aksi_add'){
               <input type="hidden" name="publish" class="form-control" value="<?=$date?>">
             </div>
             </td>
+           </tr>
+           <tr>
+            <td>Tags</td>
+            <td>
+              <div class="col-sm-6">
+                  <input type="text" name="tags" class="form-control" value="<?=$tags?>">
+              </div>
+              </td>
            </tr>
            <tr>
             <td colspan="2">

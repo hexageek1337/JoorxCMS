@@ -1,5 +1,5 @@
 <!-- Content JoorxCMS -->
-<h1 class="header">Administrator Login</h1>
+<h1 class="header">Login Page</h1>
 
 <div class="container">
 <div class="form-signin">

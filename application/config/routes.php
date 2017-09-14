@@ -79,6 +79,7 @@ $route['user/index/(:num)'] = 'user/index/$2';
 // Routes Blog
 $route['blog'] = 'blog';
 $route['blog/(:any)'] = 'blog/view/$1';
+$route['blog/tag/(:any)/(:num)'] = 'blog/tag/$1/$2';
 $route['blog/index/(:num)'] = 'blog/index/$1';
 // Routes Page Statis
 $route['default_controller'] = 'joorx/view';

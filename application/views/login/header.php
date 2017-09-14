@@ -9,17 +9,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="noindex, nofollow">
 <meta name="description" content="<?php echo $this->config->item('joorxcms_description'); ?>">
 <meta name="keywords" content="<?php echo $this->config->item('joorxcms_keywords'); ?>">
 <meta http-equiv="Copyright" content="<?php echo $this->config->item('joorxcms_copyright'); ?>">
 <meta name="author" content="<?php echo $this->config->item('joorxcms_author'); ?>">
 <meta http-equiv="imagetoolbar" content="no">
 <meta name="language" content="<?php echo $this->config->item('joorxcms_language'); ?>">
-<meta name="revisit-after" content="7">
-<meta name="webcrawlers" content="all">
-<meta name="rating" content="general">
-<meta name="spiders" content="all">
 <link rel="canonical" href="<?php echo $this->config->item('joorxcms_url'); ?>" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:type" content="website" />

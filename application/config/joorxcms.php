@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Settings SEO -> Joorx CMS                                               |
 |                                                                         |
 |-------------------------------------------------------------------------|
-| Version Beta                                                            |
+| Version 1.0                                                             |
 |_________________________________________________________________________|
 */
 

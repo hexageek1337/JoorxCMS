@@ -1,5 +1,5 @@
 # Joorx CMS
-Joorx CMS berinovasi membantu memudahkan para pengguna untuk membuat sebuah blog yang simple , seo , dan tangguh . Dengan adanya JoorxCMS ini anda dapat meringankan pekerjaan anda dalam menulis artikel , sebagaimana seharusnya anda mengejar deadline untuk menyetorkan tulisan pada waktu yang singkat .
+Joorx CMS an innovation that can provide new solutions for its users, of course CMS is already integrated is safe, comfortable, and easy to use. This CMS is created based on the framework base of codeigniter version 3.1.5 , and of course Joorx CMS is built based on the standard rules of codeigniter.
 
 # Installation
 - Import file joorxcms.sql to your database name
@@ -9,10 +9,11 @@ Joorx CMS berinovasi membantu memudahkan para pengguna untuk membuat sebuah blog
 
 # :heavy_exclamation_mark: Important
 - Change user login default for avoid piercing login page
-  User :
-  1. admin (password : admin)
-  2. joorxcms (password : joorxcms~)
-  3. member (password : member)
+<br />
+  User :<br />
+  [-] admin (password : admin)<br />
+  [-] joorxcms (password : joorxcms~)<br />
+  [-] member (password : member)<br />
 
 # Server Requirements
 - MySQL Server

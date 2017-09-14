@@ -3,7 +3,7 @@
 * Model News
 */
 class News_model extends CI_Model {
-	
+
 	public function __construct() {
 		$this->load->database();
 	}
@@ -19,19 +19,6 @@ class News_model extends CI_Model {
 		return $query->row_array();
 	}
 
-	public function set_news() {
-		$this->load->helper('url');
-
-		$slug = url_title($this->input->post('title'), 'dash', TRUE);
-		$data = array(
-			'title' => $this->input->post('title'),
-			'text' => $this->input->post('text'),
-			'slug' => $slug
-			);
-
-		return $this->db->insert('news', $data);
-	}
-
 	public function seekerlist($limit,$offset) {
         $query = $this->db->select('*')
                 ->from('news')
@@ -45,8 +32,28 @@ class News_model extends CI_Model {
     public function num_rows()
     {
         $query = $this->db->select('*')
-                ->from('news')                
+                ->from('news')
                 ->get();
+
+        return $query->num_rows();
+    }
+
+		public function seekerlist_by_tags($nametags, $limit,$offset) {
+	        $query = $this->db->select('*')
+	                ->from('news')
+									->like('tags', $nametags)
+	                ->limit($limit,$offset)
+	                ->get();
+
+	        return $query->result_array();
+	  }
+
+		public function num_rows_by_tags($nametags)
+    {
+        $query = $this->db->select('*')
+                ->from('news')
+								->like('tags', $nametags)
+								->get();
 
         return $query->num_rows();
     }

@@ -7,6 +7,8 @@
     $photo = $rowdata->photo;
     $slug = $rowdata->slug;
     $text = $rowdata->text;
+    $created = $rowdata->created;
+    $tags = $rowdata->tags;
     $publish = $rowdata->publish;
   }
 ?>
@@ -17,7 +19,7 @@
   <div class="panel-heading"><b><?=$titles?></b></div>
   <div class="panel-body">
 
-     <p> <a href="<?=base_url()?>admin/berita" class="btn btn-sm btn-info"><i class="glyphicon glyphicon-repeat"></i> Kembali</a>
+     <p><a href="<?=base_url('admin/berita')?>"><button class="btn btn-sm btn-info"><i class="glyphicon glyphicon-repeat"></i> Kembali</button></a> <a href="<?=base_url('blog/'.$slug)?>"><button class="btn btn-sm btn-info"><i class="glyphicon glyphicon-repeat"></i> View Article</button></a>
      </p>
 
        <table class="table table-striped">
@@ -32,6 +34,14 @@
          <tr>
           <td>Text</td>
           <td><?=word_limiter($text, 200)?></td>
+          </tr>
+         <tr>
+           <td>Created</td>
+           <td><?=$created?></td>
+         </tr>
+         <tr>
+          <td>Tags</td>
+          <td><?php $all_tags = explode(',' ,$tags); foreach ($all_tags as $one_tag){ echo '<a href="/blog/tag/'.$one_tag.'"><span class="label label-info">'.$one_tag.'</span></a> '; } ?></td>
           </tr>
          <tr>
           <td>Published</td>

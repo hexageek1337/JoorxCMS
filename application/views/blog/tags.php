@@ -1,5 +1,5 @@
 <!-- News JoorxCMS -->
-<h1 class="header">news</h1>
+<h1 class="header">Tags</h1>
 
 <div class="container">
     <div class="row">

@@ -20,9 +20,9 @@ class Login extends CI_Controller {
 			'hash' => $this->security->get_csrf_hash()
 			);
 		// Load view
-		$this->load->view('templates/header');
+		$this->load->view('login/header');
 		$this->load->view('login/v_login', $csrf);
-		$this->load->view('templates/footer');
+		$this->load->view('login/footer');
 	}
 
 	public function aksi_login(){
@@ -36,9 +36,9 @@ class Login extends CI_Controller {
 				'hash' => $this->security->get_csrf_hash()
 				);
 			// Load view
-			$this->load->view('templates/header');
+			$this->load->view('login/header');
 			$this->load->view('login/v_login', $csrf);
-			$this->load->view('templates/footer');
+			$this->load->view('login/footer');
 		}
 
 		$username = addslashes($this->input->post('username'));

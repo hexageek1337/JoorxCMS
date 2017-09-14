@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title><?php echo $this->config->item('joorxcms_title'); ?></title>
+  <title><?=$news_slug['title']?> - <?php echo $this->config->item('joorxcms_title'); ?></title>
 <!-- Favicon -->
 <link rel="shortcut icon" type="image/x-icon" href="<?=base_url('assets/images/joorxcms/favicon.ico')?>" />
 <!-- Meta Tag JoorxCMS -->
@@ -10,8 +10,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
-<meta name="description" content="<?php echo $this->config->item('joorxcms_description'); ?>">
-<meta name="keywords" content="<?php echo $this->config->item('joorxcms_keywords'); ?>">
+<meta name="description" content="<?=word_limiter($news_slug['text'], 30)?>">
+<meta name="keywords" content="<?=$news_slug['tags']?>">
 <meta http-equiv="Copyright" content="<?php echo $this->config->item('joorxcms_copyright'); ?>">
 <meta name="author" content="<?php echo $this->config->item('joorxcms_author'); ?>">
 <meta http-equiv="imagetoolbar" content="no">
@@ -20,19 +20,26 @@
 <meta name="webcrawlers" content="all">
 <meta name="rating" content="general">
 <meta name="spiders" content="all">
-<link rel="canonical" href="<?php echo $this->config->item('joorxcms_url'); ?>" />
+<link rel="canonical" href="<?=base_url('blog/'.$news_slug['slug'])?>" />
 <meta property="og:locale" content="en_US" />
-<meta property="og:type" content="website" />
-<meta property="og:title" content="<?php echo $this->config->item('joorxcms_title'); ?>" />
-<meta property="og:description" content="<?php echo $this->config->item('joorxcms_description'); ?>" />
-<meta property="og:url" content="<?php echo $this->config->item('joorxcms_url'); ?>" />
+<meta property="og:type" content="article" />
+<?php
+$all_tags = explode(',' ,$news_slug['tags']);
+foreach ($all_tags as $one_tag){
+  echo '<meta property="article:tag" content="'.$one_tag.'" />';
+} ?>
+<meta property="article:section" content="Tutorial Codeigniter" />
+<meta property="article:published_time" content="<?=$news_slug['publish']?>T15:08:15+00:00" />
+<meta property="og:title" content="<?=$news_slug['title']?>" />
+<meta property="og:description" content="<?=word_limiter($news_slug['text'], 30)?>" />
+<meta property="og:url" content="<?=base_url('blog/'.$news_slug['slug'])?>" />
 <meta property="og:site_name" content="<?php echo $this->config->item('joorxcms_title'); ?>" />
-<meta property="og:image" content="<?=base_url('assets/images/joorxcms/woman-sunglasses.jpg')?>" />
-<meta property="og:image:secure_url" content="<?=base_url('assets/images/joorxcms/woman-sunglasses.jpg')?>" />
+<meta property="og:image" content="<?=base_url('assets/images/'.$news_slug['photo'])?>" />
+<meta property="og:image:secure_url" content="<?=base_url('assets/images/'.$news_slug['photo'])?>" />
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:description" content="<?php echo $this->config->item('joorxcms_description'); ?>" />
-<meta name="twitter:title" content="<?php echo $this->config->item('joorxcms_title'); ?>" />
-<meta name="twitter:image" content="<?=base_url('assets/images/joorxcms/woman-sunglasses.jpg')?>" />
+<meta name="twitter:description" content="<?=word_limiter($news_slug['text'], 30)?>" />
+<meta name="twitter:title" content="<?=$news_slug['title']?>" />
+<meta name="twitter:image" content="<?=base_url('assets/images/'.$news_slug['photo'])?>" />
 <!-- Meta Tag JoorxCMS -->
 <!-- Custom CSS JoorxCMS -->
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/media/css/hexaainside.css">

@@ -14,7 +14,7 @@
          <th width="520">Title</th>
          <th>Photo</th>
          <th>Published</th>
-         <th colspan="2">Action</th>
+         <th>Action</th>
          </tr>
         </thead>
         <tbody>

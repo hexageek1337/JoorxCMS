@@ -2,6 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <title><?php echo $this->config->item('joorxcms_title'); ?></title>
+<!-- Favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="<?=base_url('assets/images/joorxcms/favicon.ico')?>" />
 <!-- Meta Tag JoorxCMS -->
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -14,10 +16,6 @@
 <meta name="author" content="<?php echo $this->config->item('joorxcms_author'); ?>">
 <meta http-equiv="imagetoolbar" content="no">
 <meta name="language" content="<?php echo $this->config->item('joorxcms_language'); ?>">
-<meta name="revisit-after" content="7">
-<meta name="webcrawlers" content="all">
-<meta name="rating" content="general">
-<meta name="spiders" content="all">
 <meta property="og:url" content="<?php echo $this->config->item('joorxcms_url'); ?>">
 <meta property="og:site_name" content="<?php echo $this->config->item('joorxcms_title'); ?>">
 <!-- Custom CSS JoorxCMS -->
