@@ -6,7 +6,7 @@ html, body {
     position: relative;
     min-height: 100%;
     box-sizing: border-box;
-    margin-bottom: 60px;
+    margin-bottom: 80px;
 }
 
 .color-green {
@@ -21,6 +21,152 @@ html, body {
     display: block;
     margin: auto;
     width: 30%;
+}
+
+.image-center img {
+    display: block;
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+
+.navbar-custom {
+    background-color: #16a085;
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbar-custom > .navbar-header > .navbar-brand {
+    background: none;
+    color: #fff;
+}
+
+.navbar-custom > .navbar-header > .navbar-brand :hover {
+    background: none;
+    color: #fff;
+}
+
+.navbar-custom > .navbar-header > .navbar-brand > a {
+    background: none;
+    color: #fff;
+}
+
+.navbar-custom > .navbar-header > .navbar-brand > a :hover {
+    background: none;
+    color: #fff;
+}
+
+.navbar-custom .navbar-header .navbar-toggle {
+  border-color: #fff;
+  color: #fff;
+  /* Transition Hover */
+  transition: all 2s ease-in;
+  -webkit-transition: all 2s ease-in;
+  -moz-transition: all 2s ease-in;
+  -o-transition: all 2s ease-in;
+}
+
+.navbar-custom .navbar-header .navbar-toggle :hover, :focus {
+  border-color: #18967d;
+  color: #fff;
+}
+
+.navbar-custom .navbar-header .navbar-toggle > span {
+  background-color: #fff;
+}
+
+.navbar-custom .navbar-header .navbar-toggle > span :hover {
+  background-color: #18967d;
+}
+
+.navbar-custom .navbar-collapse {
+  border: none;
+}
+
+.navbar-custom .navbar-nav > .dropdown {
+    /* Transition Hover */
+    transition: all 2s ease-in;
+    -webkit-transition: all 2s ease-in;
+    -moz-transition: all 2s ease-in;
+    -o-transition: all 2s ease-in;
+    /* Coloring */
+    background-color: #16a085;
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbar-custom .navbar-nav > .dropdown :hover {
+    background-color: #18967d;
+}
+
+.navbar-custom .navbar-nav > .dropdown > ul {
+    /* Transition Hover */
+    transition: all 2s ease-in;
+    -webkit-transition: all 2s ease-in;
+    -moz-transition: all 2s ease-in;
+    -o-transition: all 2s ease-in;
+    /* Coloring */
+    background-color: #16a085;
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbar-custom .navbar-nav > .dropdown > ul :hover {
+    background-color: #18967d;
+}
+
+.navbar-custom .navbar-nav > .dropdown > ul > li > a, a :hover, a :active, a :visited, a :link {
+    /* Transition Hover */
+    transition: all 1s ease-in;
+    -webkit-transition: all 1s ease-in;
+    -moz-transition: all 1s ease-in;
+    -o-transition: all 1s ease-in;
+    /* Coloring */
+    background-color: #16a085;
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbar-custom .navbar-nav > .dropdown > ul > li :hover {
+    background-color: #18967d;
+    color: #000;
+}
+
+.navbar-custom .navbar-nav > .dropdown > a {
+    /* Transition Hover */
+    transition: all 2s ease-in;
+    -webkit-transition: all 2s ease-in;
+    -moz-transition: all 2s ease-in;
+    -o-transition: all 2s ease-in;
+    /* Coloring */
+    background-color: #16a085;
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbar-custom .navbar-nav > .dropdown > a, a :hover, a :active, a :visited, a :link {
+    background-color: #18967d;
+}
+
+.navbar-custom .navbar-nav > li {
+  /* Transition Hover */
+  transition: all 2s ease-in;
+  -webkit-transition: all 2s ease-in;
+  -moz-transition: all 2s ease-in;
+  -o-transition: all 2s ease-in;
+}
+
+.navbar-custom .navbar-nav > li :hover {
+    background-color: #18967d;
+}
+
+.navbar-custom .navbar-nav > li > a, a :hover, a :active, a :visited, a :link {
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbar-custom .navbar-nav > .active {
+    background-color: #18967d;
 }
 
 .header {
@@ -42,11 +188,11 @@ html, body {
 .footer {
   position: fixed;
   bottom: 0;
-  padding-top: 20px;
+  padding-top: 16px;
   width: 100%;
   /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #2980b9;
+  height: 50px;
+  background-color: #2c3e50;
   color: white;
   text-align: center;
   text-decoration: none;
@@ -54,15 +200,32 @@ html, body {
 
 .footer-scroll {
   position: fixed;
-  bottom: 0;
-  padding-top: 20px;
-  padding-right: 20px;
-  width: 100%;
+  bottom: 18px;
+  right: 6px;
   /* Set the fixed height of the footer here */
+  width: 50px;
   height: 60px;
   color: white;
   text-align: center;
   text-decoration: none;
+}
+
+.button-scroll {
+  /* Transition Hover */
+  transition: all 1s linear;
+  -webkit-transition: all 1s linear;
+  -moz-transition: all 1s linear;
+  -o-transition: all 1s linear;
+  /* Button Scroll */
+  background-color: #2c3e50;
+  color: white;
+  padding-right: 20px;
+  padding-bottom: 22px;
+  display: none;
+}
+
+.button-scroll:hover {
+  background-color: #16a085;
 }
 
 .footer a {
@@ -90,12 +253,17 @@ html, body {
     text-decoration: none;
 }
 
-.navbar-default {
-    background-color: #c0392b;
-}
-
 .right {
     float:right;
+}
+
+.right-scroll {
+    color: white;
+    float:right;
+}
+
+.right-scroll:hover {
+    color: white;
 }
 
 a {
@@ -153,11 +321,52 @@ a:hover {
     background: #662D91;
 }
 
+#banner-footer-joorxcms {
+    padding-top: 20px;
+}
+
+#sidebar-joorxcms {
+    padding-top: 10px;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+}
+
 .post { border-bottom:1px solid #DDD }
 .post-title {  color:#662D91; }
 .post .glyphicon { margin-right:5px; }
 .post-header-line { border-top:1px solid #DDD;border-bottom:1px solid #DDD;padding:5px 0px 5px 15px;font-size: 12px; }
 .post-content { padding-bottom: 15px;padding-top: 15px;}
+
+@media only screen and (max-width:320px){
+    #sidebar-joorxcms{
+      display: none;
+    }
+}
+
+@media only screen and (max-width:375px){
+    #sidebar-joorxcms{
+        display: none;
+    }
+}
+
+@media only screen and (max-width:384px){
+    #sidebar-joorxcms{
+        display: none;
+    }
+}
+
+@media only screen and (max-width:414px){
+    #sidebar-joorxcms{
+        display: none;
+    }
+}
+
+@media (min-width:320px) and (max-width:991px){
+    #sidebar-joorxcms{
+        display: none;
+    }
+}
 
 @media only screen and (min-width:768px){
     .container{

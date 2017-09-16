@@ -10,6 +10,17 @@ class M_login extends CI_Model {
 		return $res->result_array();
 	}
 
+	public function resolve_user_login($username, $password) {
+
+		$this->db->select('password');
+		$this->db->from('admin');
+		$this->db->where('username', $username);
+		$hash = $this->db->get()->row('password');
+
+		return password_verify($password, $hash);
+
+	}
+
 	public function get_user_id_from_username($username) {
 
 		$this->db->select('id');

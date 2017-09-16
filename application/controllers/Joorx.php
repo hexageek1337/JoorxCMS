@@ -28,10 +28,27 @@ class Joorx extends CI_Controller {
 		// Check file exists
 		if (!file_exists(APPPATH."views/pages/".$templates.'.php')) {
 			show_404();
+		} elseif ($templates == 'kontak') {
+			$data['class'] = 'kontak';
+
+			// Load view
+			$this->load->view('templates/header', $data);
+			$this->load->view('pages/'.$templates);
+			$this->load->view('templates/footer');
+		} elseif ($templates == 'tentang') {
+			$data['class'] = 'tentang';
+
+			// Load view
+			$this->load->view('templates/header', $data);
+			$this->load->view('pages/'.$templates);
+			$this->load->view('templates/footer');
+		} else {
+			$data['class'] = 'index';
+
+			// Load view
+			$this->load->view('templates/header', $data);
+			$this->load->view('pages/'.$templates);
+			$this->load->view('templates/footer');
 		}
-		// Load view
-		$this->load->view('templates/header');
-		$this->load->view('pages/'.$templates);
-		$this->load->view('templates/footer');
 	}
 }

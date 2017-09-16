@@ -11,9 +11,9 @@ Joorx CMS an innovation that can provide new solutions for its users, of course 
 - Change user login default for avoid piercing login page
 <br />
   User :<br />
-  [-] admin (password : admin)<br />
-  [-] joorxcms (password : joorxcms~)<br />
-  [-] member (password : member)<br />
+  [-] admin (password : adminjoorxcms123!)<br />
+  [-] joorxcms (password : adminjoorxcms123!)<br />
+  [-] member (password : memberjoorxcms123!)<br />
 
 # Server Requirements
 - MySQL Server

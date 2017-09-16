@@ -16,6 +16,7 @@ if($aksi=='aksi_add'){
     <div class="panel-heading"><b><?=$titles?></b></div>
     <div class="panel-body">
     <?=$this->session->flashdata('pesan')?>
+    <?php echo validation_errors(); ?>
     <?php echo form_open_multipart('admin/form/'.$aksi.''); ?>
          <table class="table table-striped">
 
@@ -82,6 +83,7 @@ if($aksi=='aksi_add'){
     <div class="panel-heading"><b><?=$titles?></b></div>
     <div class="panel-body">
     <?=$this->session->flashdata('pesan')?>
+    <?php echo validation_errors(); ?>
     <?php echo form_open_multipart('admin/form/'.$aksi.''); ?>
          <table class="table table-striped">
 

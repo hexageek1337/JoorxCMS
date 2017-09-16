@@ -41,31 +41,31 @@ class Login extends CI_Controller {
 			$this->load->view('login/footer');
 		}
 
-		$username = addslashes($this->input->post('username'));
-		$password = addslashes($this->input->post('password'));
-		$where = array(
-			'username' => $username,
-			'password' => md5($password)
-			);
-		$cek = $this->m_login->cek_login("admin",$where)->num_rows();
-		$user_id = $this->m_login->get_user_id_from_username($username);
-		if($cek > 0){
-
-			$data_session = array(
-				'userole_id' => $user_id,
-				'nama' => $username,
-				'logged_in' => true
+			$username = addslashes($this->input->post('username'));
+			$password = addslashes($this->input->post('password'));
+			$where = array(
+				'username' => $username,
+				'password' => $this->m_login->resolve_user_login($username, $password)
 				);
+			$cek = $this->m_login->cek_login("admin",$where)->num_rows();
+			$user_id = $this->m_login->get_user_id_from_username($username);
+			if($cek > 0){
 
-			$this->session->set_userdata($data_session);
-			$user_role = $this->m_login->get_user($this->session->userdata('userole_id'));
-			if ($user_role->role === 'admin') {
-				redirect(base_url('admin'));
+				$data_session = array(
+					'userole_id' => $user_id,
+					'nama' => $username,
+					'logged_in' => true
+					);
+
+				$this->session->set_userdata($data_session);
+				$user_role = $this->m_login->get_user($this->session->userdata('userole_id'));
+				if ($user_role->role === 'admin') {
+					redirect(base_url('admin'));
+				} else {
+					redirect(base_url('member'));
+				}
 			} else {
-				redirect(base_url('member'));
+				redirect(base_url('login'));
 			}
-		} else {
-			redirect(base_url('login'));
-		}
 	}
 }

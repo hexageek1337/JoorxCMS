@@ -92,6 +92,7 @@ class User extends CI_Controller {
         $photo = $imagename;
         $password = addslashes($this->input->post('password'));
         $role = addslashes($this->input->post('role'));
+				$lengthpassword = strlen($password);
 
 				$csrf = array(
 					'name' => $this->security->get_csrf_token_name(),
@@ -117,41 +118,65 @@ class User extends CI_Controller {
             $this->load->view('user/vformbarang',$data,$csrf);
 						$this->load->view('admin/footer'); //load views footer
         } else if ($mau_ke == "aksi_add") {//jika uri segmentnya aksi_add sebagai fungsi untuk insert
-					if (! $this->upload->do_upload('photo')){
-						$this->session->set_flashdata("pesan", "<div class=\"alert alert-danger\" id=\"alert\"><i class=\"glyphicon glyphicon-remove\"></i> Data tidak berhasil di simpan</div>"); //pesan yang tampil setalah berhasil di insert
-            redirect('user', 'refresh');
-					} else{
-						$uploads = $this->upload->data();
-						$data = array(
-                'username'   => $username,
-                'password'  => md5($password),
-                'photo' => $photo,
-                'role'=> $role
-            );
-						$data = $this->security->xss_clean($data);
-            $this->admincrud->get_insert('admin', $data); //model insert data barang
-            $this->session->set_flashdata("pesan", "<div class=\"alert alert-success\" id=\"alert\"><i class=\"glyphicon glyphicon-ok\"></i> Data berhasil di simpan</div>"); //pesan yang tampil setalah berhasil di insert
-            redirect('user', 'refresh');
-					}
+						if ($username === '') {
+							$this->session->set_flashdata("pesan", "<div class=\"alert alert-danger\" id=\"alert\"><i class=\"glyphicon glyphicon-remove\"></i> Fill Form Username!</div>"); //pesan yang tampil setalah berhasil di insert
+							redirect('user', 'refresh');
+						} elseif($password === '') {
+							$this->session->set_flashdata("pesan", "<div class=\"alert alert-danger\" id=\"alert\"><i class=\"glyphicon glyphicon-remove\"></i> Fill Form Password!</div>"); //pesan yang tampil setalah berhasil di insert
+							redirect('user', 'refresh');
+						} elseif ($lengthpassword < 16) {
+							$this->session->set_flashdata("pesan", "<div class=\"alert alert-danger\" id=\"alert\"><i class=\"glyphicon glyphicon-remove\"></i> Min 16 Character for Password</div>"); //pesan yang tampil setalah berhasil di insert
+							redirect('user', 'refresh');
+						} elseif ($role === '') {
+							$this->session->set_flashdata("pesan", "<div class=\"alert alert-danger\" id=\"alert\"><i class=\"glyphicon glyphicon-remove\"></i> Fill Form Role!</div>"); //pesan yang tampil setalah berhasil di insert
+							redirect('user', 'refresh');
+						} elseif (! $this->upload->do_upload('photo')){
+							$this->session->set_flashdata("pesan", "<div class=\"alert alert-danger\" id=\"alert\"><i class=\"glyphicon glyphicon-remove\"></i> File not uploaded!</div>"); //pesan yang tampil setalah berhasil di insert
+	            redirect('user', 'refresh');
+						} else {
+							$uploads = $this->upload->data();
+							$data = array(
+	                'username'   => $username,
+	                'password'  => password_hash($password, PASSWORD_BCRYPT),
+	                'photo' => $photo,
+	                'role'=> $role
+	            );
+							$data = $this->security->xss_clean($data);
+	            $this->admincrud->get_insert('admin', $data); //model insert data barang
+	            $this->session->set_flashdata("pesan", "<div class=\"alert alert-success\" id=\"alert\"><i class=\"glyphicon glyphicon-ok\"></i> Data berhasil di simpan</div>"); //pesan yang tampil setalah berhasil di insert
+	            redirect('user', 'refresh');
+						}
         } else if ($mau_ke == "aksi_edit") { //jika uri segmentnya aksi_edit sebagai fungsi untuk update
-					if (! $this->upload->do_upload('photo')){
-						$this->session->set_flashdata("pesan", "<div class=\"alert alert-danger\" id=\"alert\"><i class=\"glyphicon glyphicon-remove\"></i> Data tidak berhasil di update</div>"); //pesan yang tampil setalah berhasil di insert
-            redirect('user', 'refresh');
-					} else{
-						$photo_old = $this->admincrud->GetWhere('admin', array('id' => $id));
-						unlink("assets/images/user/".$photo_old[0]['photo']);
-						$uploads = $this->upload->data();
-          	$data = array(
-							'username'   => $username,
-							'password'  => md5($password),
-							'photo' => $photo,
-							'role'=> $role
-            );
-						$data = $this->security->xss_clean($data);
-            $this->admincrud->get_update('admin', $id,$data); //modal update data barang
-            $this->session->set_flashdata("pesan", "<div class=\"alert alert-success\" id=\"alert\"><i class=\"glyphicon glyphicon-ok\"></i> Data berhasil di update</div>"); //pesan yang tampil setelah berhasil di update
-            redirect('user', 'refresh');
-					}
+						if ($username === '') {
+							$this->session->set_flashdata("pesan", "<div class=\"alert alert-danger\" id=\"alert\"><i class=\"glyphicon glyphicon-remove\"></i> Fill Form Username!</div>"); //pesan yang tampil setalah berhasil di insert
+							redirect('user', 'refresh');
+						} elseif($password === '') {
+							$this->session->set_flashdata("pesan", "<div class=\"alert alert-danger\" id=\"alert\"><i class=\"glyphicon glyphicon-remove\"></i> Fill Form Password!</div>"); //pesan yang tampil setalah berhasil di insert
+							redirect('user', 'refresh');
+						} elseif ($lengthpassword < 16) {
+							$this->session->set_flashdata("pesan", "<div class=\"alert alert-danger\" id=\"alert\"><i class=\"glyphicon glyphicon-remove\"></i> Min 16 Character for Password</div>"); //pesan yang tampil setalah berhasil di insert
+							redirect('user', 'refresh');
+						} elseif ($role === '') {
+							$this->session->set_flashdata("pesan", "<div class=\"alert alert-danger\" id=\"alert\"><i class=\"glyphicon glyphicon-remove\"></i> Fill Form Role!</div>"); //pesan yang tampil setalah berhasil di insert
+							redirect('user', 'refresh');
+						} elseif (! $this->upload->do_upload('photo')){
+							$this->session->set_flashdata("pesan", "<div class=\"alert alert-danger\" id=\"alert\"><i class=\"glyphicon glyphicon-remove\"></i> File not uploaded!</div>"); //pesan yang tampil setalah berhasil di insert
+							redirect('user', 'refresh');
+						} else {
+							$photo_old = $this->admincrud->GetWhere('admin', array('id' => $id));
+							unlink("assets/images/user/".$photo_old[0]['photo']);
+							$uploads = $this->upload->data();
+	          	$data = array(
+								'username'   => $username,
+								'password'  => password_hash($password, PASSWORD_BCRYPT),
+								'photo' => $photo,
+								'role'=> $role
+	            );
+							$data = $this->security->xss_clean($data);
+	            $this->admincrud->get_update('admin', $id,$data); //modal update data barang
+	            $this->session->set_flashdata("pesan", "<div class=\"alert alert-success\" id=\"alert\"><i class=\"glyphicon glyphicon-ok\"></i> Data berhasil di update</div>"); //pesan yang tampil setelah berhasil di update
+	            redirect('user', 'refresh');
+						}
         }
 
     }

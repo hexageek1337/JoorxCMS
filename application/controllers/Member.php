@@ -102,7 +102,8 @@ class Member extends CI_Controller {
         $text = $this->input->post('text');
 				$createdby = addslashes($this->session->userdata('nama'));
 				$tags = addslashes($this->input->post('tags'));
-        $publish = $this->input->post('publish');
+        $publish = addslashes($this->input->post('publish'));
+				$lengthtitle = strlen($title);
 
 				$csrf = array(
 					'name' => $this->security->get_csrf_token_name(),
@@ -128,47 +129,71 @@ class Member extends CI_Controller {
             $this->load->view('member/vformbarang',$data,$csrf);
 						$this->load->view('member/footer'); //load views footer
         } else if ($mau_ke == "aksi_add") {//jika uri segmentnya aksi_add sebagai fungsi untuk insert
-					if (! $this->upload->do_upload('photo')){
-						$this->session->set_flashdata("pesan", "<div class=\"alert alert-danger\" id=\"alert\"><i class=\"glyphicon glyphicon-remove\"></i> Data tidak berhasil di simpan</div>"); //pesan yang tampil setalah berhasil di insert
-            redirect('member/berita', 'refresh');
-					} else{
-						$uploads = $this->upload->data();
-						$data = array(
-                'title'   => $title,
-                'photo'  => $photo,
-                'slug' => $slug,
-                'text'=> $text,
+						if ($title === '') {
+							$this->session->set_flashdata("pesan", "<div class=\"alert alert-danger\" id=\"alert\"><i class=\"glyphicon glyphicon-remove\"></i> Fill Form Title!</div>"); //pesan yang tampil setalah berhasil di insert
+							redirect('member/berita', 'refresh');
+						} elseif($lengthtitle > 55) {
+							$this->session->set_flashdata("pesan", "<div class=\"alert alert-danger\" id=\"alert\"><i class=\"glyphicon glyphicon-remove\"></i> Max 55 Character for Title</div>"); //pesan yang tampil setalah berhasil di insert
+							redirect('member/berita', 'refresh');
+						} elseif ($text === '') {
+							$this->session->set_flashdata("pesan", "<div class=\"alert alert-danger\" id=\"alert\"><i class=\"glyphicon glyphicon-remove\"></i> Fill Form Text!</div>"); //pesan yang tampil setalah berhasil di insert
+							redirect('member/berita', 'refresh');
+						} elseif ($tags === '') {
+							$this->session->set_flashdata("pesan", "<div class=\"alert alert-danger\" id=\"alert\"><i class=\"glyphicon glyphicon-remove\"></i> Fill Form Tags!</div>"); //pesan yang tampil setalah berhasil di insert
+							redirect('member/berita', 'refresh');
+						} elseif (! $this->upload->do_upload('photo')){
+							$this->session->set_flashdata("pesan", "<div class=\"alert alert-danger\" id=\"alert\"><i class=\"glyphicon glyphicon-remove\"></i> File not uploaded!</div>"); //pesan yang tampil setalah berhasil di insert
+	            redirect('member/berita', 'refresh');
+						} else {
+							$uploads = $this->upload->data();
+							$data = array(
+	                'title'   => $title,
+	                'photo'  => $photo,
+	                'slug' => $slug,
+	                'text'=> $text,
+									'created' => $createdby,
+									'tags' => $tags,
+	                'publish'  => $publish
+	            );
+							$data = $this->security->xss_clean($data);
+	            $this->admincrud->get_insert('news', $data); //model insert data barang
+	            $this->session->set_flashdata("pesan", "<div class=\"alert alert-success\" id=\"alert\"><i class=\"glyphicon glyphicon-ok\"></i> Data berhasil di simpan</div>"); //pesan yang tampil setalah berhasil di insert
+	            redirect('member/berita', 'refresh');
+						}
+        } else if ($mau_ke == "aksi_edit") { //jika uri segmentnya aksi_edit sebagai fungsi untuk update
+						if ($title === '') {
+							$this->session->set_flashdata("pesan", "<div class=\"alert alert-danger\" id=\"alert\"><i class=\"glyphicon glyphicon-remove\"></i> Fill Form Title!</div>"); //pesan yang tampil setalah berhasil di insert
+							redirect('member/berita', 'refresh');
+						} elseif($lengthtitle > 55) {
+							$this->session->set_flashdata("pesan", "<div class=\"alert alert-danger\" id=\"alert\"><i class=\"glyphicon glyphicon-remove\"></i> Max 55 Character for Title</div>"); //pesan yang tampil setalah berhasil di insert
+							redirect('member/berita', 'refresh');
+						} elseif ($text === '') {
+							$this->session->set_flashdata("pesan", "<div class=\"alert alert-danger\" id=\"alert\"><i class=\"glyphicon glyphicon-remove\"></i> Fill Form Text!</div>"); //pesan yang tampil setalah berhasil di insert
+							redirect('member/berita', 'refresh');
+						} elseif ($tags === '') {
+							$this->session->set_flashdata("pesan", "<div class=\"alert alert-danger\" id=\"alert\"><i class=\"glyphicon glyphicon-remove\"></i> Fill Form Tags!</div>"); //pesan yang tampil setalah berhasil di insert
+							redirect('member/berita', 'refresh');
+						} elseif (! $this->upload->do_upload('photo')){
+							$this->session->set_flashdata("pesan", "<div class=\"alert alert-danger\" id=\"alert\"><i class=\"glyphicon glyphicon-remove\"></i> File not uploaded!</div>"); //pesan yang tampil setalah berhasil di insert
+	            redirect('member/berita', 'refresh');
+						} else {
+							$photo_old = $this->admincrud->GetWhere('news', array('id' => $id));
+							unlink("assets/images/".$photo_old[0]['photo']);
+							$uploads = $this->upload->data();
+	          	$data = array(
+								'title'   => $title,
+								'photo'  => $photo,
+								'slug' => $slug,
+								'text'=> $text,
 								'created' => $createdby,
 								'tags' => $tags,
-                'publish'  => $publish
-            );
-						$data = $this->security->xss_clean($data);
-            $this->admincrud->get_insert('news', $data); //model insert data barang
-            $this->session->set_flashdata("pesan", "<div class=\"alert alert-success\" id=\"alert\"><i class=\"glyphicon glyphicon-ok\"></i> Data berhasil di simpan</div>"); //pesan yang tampil setalah berhasil di insert
-            redirect('member/berita', 'refresh');
-					}
-        } else if ($mau_ke == "aksi_edit") { //jika uri segmentnya aksi_edit sebagai fungsi untuk update
-					if (! $this->upload->do_upload('photo')){
-						$this->session->set_flashdata("pesan", "<div class=\"alert alert-danger\" id=\"alert\"><i class=\"glyphicon glyphicon-remove\"></i> Data tidak berhasil di update</div>"); //pesan yang tampil setalah berhasil di insert
-            redirect('member/berita', 'refresh');
-					} else{
-						$photo_old = $this->admincrud->GetWhere('news', array('id' => $id));
-						unlink("assets/images/".$photo_old[0]['photo']);
-						$uploads = $this->upload->data();
-          	$data = array(
-							'title'   => $title,
-							'photo'  => $photo,
-							'slug' => $slug,
-							'text'=> $text,
-							'created' => $createdby,
-							'tags' => $tags,
-							'publish'  => $publish
-            );
-						$data = $this->security->xss_clean($data);
-            $this->admincrud->get_update('news', $id,$data); //modal update data barang
-            $this->session->set_flashdata("pesan", "<div class=\"alert alert-success\" id=\"alert\"><i class=\"glyphicon glyphicon-ok\"></i> Data berhasil di update</div>"); //pesan yang tampil setelah berhasil di update
-            redirect('member/berita', 'refresh');
-					}
+								'publish'  => $publish
+	            );
+							$data = $this->security->xss_clean($data);
+	            $this->admincrud->get_update('news', $id,$data); //modal update data barang
+	            $this->session->set_flashdata("pesan", "<div class=\"alert alert-success\" id=\"alert\"><i class=\"glyphicon glyphicon-ok\"></i> Data berhasil di update</div>"); //pesan yang tampil setelah berhasil di update
+	            redirect('member/berita', 'refresh');
+						}
         }
 
     }

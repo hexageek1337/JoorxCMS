@@ -48,7 +48,8 @@
 </head>
 <body>
 <!-- Header JoorxCMS -->
-<nav class="navbar navbar-default navbar-fixed-top">
+<header>
+<nav class="navbar navbar-primary navbar-custom navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -58,15 +59,28 @@
         <span class="icon-bar"></span>
       </button>
       <div class="navbar-brand">
-      <a href="/"><img width="24" height="24" alt="Brand" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAB+0lEQVR4AcyYg5LkUBhG+1X2PdZGaW3btm3btm3bHttWrPomd1r/2Jn/VJ02TpxcH4CQ/dsuazWgzbIdrm9dZVd4pBz4zx2igTaFHrhvjneVXNHCSqIlFEjiwMyyyOBilRgGSqLNF1jnwNQdIvAt48C3IlBmHCiLQHC2zoHDu6zG1iXn6+y62ScxY9AODO6w0pvAqf23oSE4joOfH6OxfMoRnoGUm+de8wykbFt6wZtA07QwtNOqKh3ZbS3Wzz2F+1c/QJY0UCJ/J3kXWJfv7VhxCRRV1jGw7XI+gcO7rEFFRvdYxydwcPsVsC0bQdKScngt4iUTD4Fy/8p7PoHzRu1DclwmgmiqgUXjD3oTKHbAt869qdJ7l98jNTEblPTkXMwetpvnftA0LLHb4X8kiY9Kx6Q+W7wJtG0HR7fdrtYz+x7iya0vkEtUULIzCjC21wY+W/GYXusRH5kGytWTLxgEEhePPwhKYb7EK3BQuxWwTBuUkd3X8goUn6fMHLyTT+DCsQdAEXNzSMeVPAJHdF2DmH8poCREp3uwm7HsGq9J9q69iuunX6EgrwQVObjpBt8z6rdPfvE8kiiyhsvHnomrQx6BxYUyYiNS8f75H1w4/ISepDZLoDhNJ9cdNUquhRsv+6EP9oNH7Iff2A9g8h8CLt1gH0Qf9NMQAFnO60BJFQe0AAAAAElFTkSuQmCC"></a> <?php echo $this->config->item('joorxcms_title'); ?></div>
+      <a href="/"><img width="60" alt="Brand" src="<?=base_url('assets/images/joorxcms/joorxcms-logo.png')?>"></a></div>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-left">
-        <li><a href="/tentang">About</a></li>
+        <?php if($class == 'kontak')
+        {
+          echo '<li><a href="/tentang">About</a></li>
         <li><a href="/blog">Blog</a></li>
-        <li><a href="/kontak">Contact</a></li>
+        <li class="active"><a href="/kontak">Contact</a></li>';
+        } elseif($class == 'tentang') {
+          echo '<li class="active"><a href="/tentang">About</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/kontak">Contact</a></li>';
+        } else {
+          echo '<li><a href="/tentang">About</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/kontak">Contact</a></li>';
+        } ?>
+
       </ul>
     </div>
   </div>
 </nav>
+</header>
 <!-- Header JoorxCMS -->

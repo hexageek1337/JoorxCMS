@@ -55,7 +55,8 @@ class Blog extends CI_Controller {
 		$config['last_tag_close'] = "</li>";
 		$this->pagination->initialize($config);
 
-		$data['seeker'] = $this->news_model->seekerlist($config['per_page'], $this->uri->segment(3));
+		$offset = intval($this->uri->segment(3));
+		$data['seeker'] = $this->news_model->seekerlist($config['per_page'], $offset);
 		$data['links'] = $this->pagination->create_links();
 		// Load views
 		$this->load->view('blog/header', $data);
@@ -65,8 +66,8 @@ class Blog extends CI_Controller {
 
 	public function tag() {
 		// Pagination
-		$nametags = $this->uri->segment(3);
-		$offset = $this->uri->segment(4);
+		$nametags = addslashes($this->uri->segment(3));
+		$offset = intval($this->uri->segment(4));
 		$config['base_url'] = base_url('blog/tag/'.$nametags);
 		$config['total_rows'] = $this->news_model->num_rows_by_tags($nametags);
 		$config['per_page'] = 6;
