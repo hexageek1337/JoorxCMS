@@ -1,5 +1,6 @@
 # Joorx CMS
 
+[![release this repo](https://img.shields.io/github/release/hexageek1337/JoorxCMS.svg)]()
 [![issues this repo](https://img.shields.io/github/issues/hexageek1337/JoorxCMS.svg)](https://github.com/hexageek1337/JoorxCMS/issues)
 [![fork this repo](https://img.shields.io/github/forks/hexageek1337/JoorxCMS.svg)](https://github.com/hexageek1337/JoorxCMS/network)
 [![star this repo](https://img.shields.io/github/stars/hexageek1337/JoorxCMS.svg)](https://github.com/hexageek1337/JoorxCMS/stargazers)
