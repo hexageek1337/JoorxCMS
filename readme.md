@@ -1,4 +1,10 @@
 # Joorx CMS
+
+[![issues this repo](https://img.shields.io/github/issues/hexageek1337/JoorxCMS.svg)](https://github.com/hexageek1337/JoorxCMS/issues)
+[![fork this repo](https://img.shields.io/github/forks/hexageek1337/JoorxCMS.svg)](https://github.com/hexageek1337/JoorxCMS/network)
+[![star this repo](https://img.shields.io/github/stars/hexageek1337/JoorxCMS.svg)](https://github.com/hexageek1337/JoorxCMS/stargazers)
+[![license this repo](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/hexageek1337/JoorxCMS/master/license.txt)
+
 Joorx CMS an innovation that can provide new solutions for its users, of course CMS is already integrated is safe, comfortable, and easy to use. This CMS is created based on the framework base of codeigniter version 3.1.5 , and of course Joorx CMS is built based on the standard rules of codeigniter.
 
 # Installation
