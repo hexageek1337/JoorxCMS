@@ -47,12 +47,12 @@
         <span class="icon-bar"></span>
       </button>
       <div class="navbar-brand">
-      <a href="/"><img width="60" alt="Brand" src="<?=base_url('assets/images/joorxcms/joorxcms-logo.png')?>"></a></div>
+      <a href="/admin"><img width="60" alt="Brand" src="<?=base_url('assets/images/joorxcms/joorxcms-logo.png')?>"></a></div>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-left">
         <li><a href="/admin/berita">Berita</a></li>
-        <li><a href="/admin/blog">Blog</a></li>
+        <li><a href="/admin/category">Category</a></li>
         <li><a href="/admin/kontak">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">

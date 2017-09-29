@@ -6,7 +6,7 @@
   <div class="panel-heading"><b><?=$titles?></b></div>
   <div class="panel-body">
     <p><?=$this->session->flashdata('pesan')?> </p>
-      <a href="<?=base_url()?>member/form/add"><button class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-plus"></i> Tambah</button></a>
+      <a class="anchor" href="<?=base_url()?>member/form/add"><button class="btn btn-sm btn-custom"><i class="glyphicon glyphicon-plus"></i> Tambah</button></a>
       <table class="table table-striped">
         <thead>
          <tr>

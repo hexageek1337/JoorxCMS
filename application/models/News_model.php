@@ -7,6 +7,29 @@ class News_model extends CI_Model {
 	public function __construct() {
 		$this->load->database();
 	}
+
+	// GET All Table 'news'
+	public function getall_news() {
+		$query = $this->db->get('news');
+		return $query->result_array();
+	}
+
+	// GET All Table 'category'
+	public function getall_category() {
+		$query = $this->db->get('category');
+		return $query->result_array();
+	}
+
+	// GET Table 'category' by ID
+	public function getall_category_by_id($news_slug) {
+		$this->db->select('*');
+		$this->db->from('category');
+		$this->db->where('category_id', $news_slug);
+		$query = $this->db->get();
+
+		return $query->result_array();
+	}
+
 	// GET Table 'news'
 	public function get_news($slug = FALSE) {
 
@@ -57,4 +80,23 @@ class News_model extends CI_Model {
 
         return $query->num_rows();
     }
+
+		public function seekerlist_by_category($namecategory, $limit,$offset) {
+				$query = $this->db->select('*')
+								->from('news')
+								->like('category', $namecategory)
+								->limit($limit,$offset)
+								->get();
+
+				return $query->result_array();
+		}
+
+		public function num_rows_by_category($namecategory) {
+				$query = $this->db->select('*')
+								->from('news')
+								->like('category', $namecategory)
+								->get();
+
+				return $query->num_rows();
+		}
 }

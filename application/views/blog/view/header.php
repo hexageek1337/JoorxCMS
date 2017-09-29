@@ -10,7 +10,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
-<meta name="description" content="<?=word_limiter($news_slug['text'], 30)?>">
+<meta name="description" content="<?=word_limiter($news_slug['text'], 20)?>">
 <meta name="keywords" content="<?=$news_slug['tags']?>">
 <meta http-equiv="Copyright" content="<?php echo $this->config->item('joorxcms_copyright'); ?>">
 <meta name="author" content="<?php echo $this->config->item('joorxcms_author'); ?>">
@@ -29,16 +29,16 @@ foreach ($all_tags as $one_tag){
   echo '<meta property="article:tag" content="'.$one_tag.'" />';
 } ?>
 
-<meta property="article:section" content="Tutorial Codeigniter" />
+<meta property="article:section" content="<?=$news_slug['category']?>" />
 <meta property="article:published_time" content="<?=$news_slug['publish']?>T15:08:15+00:00" />
 <meta property="og:title" content="<?=$news_slug['title']?>" />
-<meta property="og:description" content="<?=word_limiter($news_slug['text'], 30)?>" />
+<meta property="og:description" content="<?=word_limiter($news_slug['text'], 20)?>" />
 <meta property="og:url" content="<?=base_url('blog/'.$news_slug['slug'])?>" />
 <meta property="og:site_name" content="<?php echo $this->config->item('joorxcms_title'); ?>" />
 <meta property="og:image" content="<?=base_url('assets/images/'.$news_slug['photo'])?>" />
 <meta property="og:image:secure_url" content="<?=base_url('assets/images/'.$news_slug['photo'])?>" />
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:description" content="<?=word_limiter($news_slug['text'], 30)?>" />
+<meta name="twitter:description" content="<?=word_limiter($news_slug['text'], 20)?>" />
 <meta name="twitter:title" content="<?=$news_slug['title']?>" />
 <meta name="twitter:image" content="<?=base_url('assets/images/'.$news_slug['photo'])?>" />
 <!-- Meta Tag JoorxCMS -->

@@ -23,6 +23,14 @@ class Joorx extends CI_Controller {
 		$this->load->view('welcome_message');
 	}
 
+	public function sitemap() {
+		$data['data'] = $this->news_model->getall_news();
+		header("Content-Type: text/xml;charset=iso-8859-1");
+
+		// Load view
+		$this->load->view('pages/sitemap', $data);
+	}
+
 	public function view($templates = 'index')
 	{
 		// Check file exists

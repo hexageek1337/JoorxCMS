@@ -9,7 +9,7 @@
 	<input class="form-control" type="text" name="username" placeholder="Masukan Username Anda ...">
 	<label for="Password">Password</label>
 	<input class="form-control" type="password" name="password" placeholder="Masukan Password Anda ...">
-	<button name="submit" type="submit" id="myButton" class="btn btn-lg btn-primary btn-block">Login</button>
+	<button name="submit" type="submit" id="myButton" class="btn btn-custom btn-block">Login</button>
 <?php echo form_close(); ?>
 </div>
 </div>

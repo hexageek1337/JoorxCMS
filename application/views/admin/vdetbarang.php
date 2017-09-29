@@ -9,6 +9,7 @@
     $text = $rowdata->text;
     $created = $rowdata->created;
     $tags = $rowdata->tags;
+    $category = $rowdata->category;
     $publish = $rowdata->publish;
   }
 ?>
@@ -42,6 +43,10 @@
          <tr>
           <td>Tags</td>
           <td><?php $all_tags = explode(',' ,$tags); foreach ($all_tags as $one_tag){ echo '<a href="/blog/tag/'.$one_tag.'"><span class="label label-info">'.$one_tag.'</span></a> '; } ?></td>
+          </tr>
+         <tr>
+          <td>Category</td>
+          <td><?php echo '<a href="/blog/category/'.$category.'"><span class="label label-info">'.$category.'</span></a>'; <?></td>
           </tr>
          <tr>
           <td>Published</td>

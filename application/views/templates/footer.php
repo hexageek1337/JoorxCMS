@@ -1,7 +1,7 @@
 <!-- Footer JoorxCMS -->
 <footer class="footer navbar-fixed-bottom">
 <div class="container">
-	Copyright &#169; <?php echo date("Y");?> <a href="mailto:admin@hexarand.gq">Denny Septian a.k.a H3xagon</a> &#9829;
+	&#169; <?php echo date("Y");?> <a href="<?=base_url()?>"><?=$this->config->item('joorxcms_title')?></a> All Rights Reserved and Created by <strong><a onclick="window.open('https://github.com/hexageek1337/JoorxCMS/');" alt="Credit by JoorxCMS" title="JoorxCMS">JoorxCMS</a></strong> &#9829;
 </div>
 </footer>
 <div class="footer-scroll">

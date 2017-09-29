@@ -55,6 +55,18 @@ class Admincrud extends CI_Model{
         }
     }
 
+    // get data by category_id in table category
+    function get_barang_bycatid($tables, $id) {
+        $this->db->from($tables);
+        $this->db->where('category_id', $id);
+
+        $query = $this->db->get();
+
+        if ($query->num_rows() == 1) {
+            return $query->result();
+        }
+    }
+
     // insert data in table
     function get_insert($tables, $data){
        $this->db->insert($tables, $data);
@@ -70,9 +82,29 @@ class Admincrud extends CI_Model{
         return TRUE;
     }
 
+    // update data in table category
+    function getcat_update($tables, $id,$data) {
+
+        $this->db->where('category_id', $id);
+        $this->db->update($tables, $data);
+
+        return TRUE;
+    }
+
     // delete data in table
     function del_barang($tables, $id) {
         $this->db->where('id', $id);
+        $this->db->delete($tables);
+        if ($this->db->affected_rows() == 1) {
+
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    // delete data in table category
+    function delcat_barang($tables, $idu) {
+        $this->db->where('category_id', $idu);
         $this->db->delete($tables);
         if ($this->db->affected_rows() == 1) {
 

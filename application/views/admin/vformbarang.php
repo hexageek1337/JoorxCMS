@@ -6,6 +6,7 @@ if($aksi=='aksi_add'){
   $slug = "";
   $text = "";
   $tags = "";
+  $category = "";
   $publish = "";
   date_default_timezone_set("Asia/Jakarta");
   $date = date("Y-m-d"); ?>
@@ -40,7 +41,8 @@ if($aksi=='aksi_add'){
             <td>Text</td>
             <td>
             <div class="col-sm-6">
-              <textarea name="text" cols="120" rows="30" placeholder="Masukan isi konten ..."></textarea>
+              <textarea name="text" id="content"></textarea>
+              <?php echo display_ckeditor($ckeditor); ?>
               <input type="hidden" name="publish" class="form-control" value="<?=$date?>">
             </div>
             </td>
@@ -52,6 +54,19 @@ if($aksi=='aksi_add'){
                   <input type="text" name="tags" class="form-control" placeholder="Masukan tag yang dipisahkan dengan koma ...">
               </div>
               </td>
+           </tr>
+           <tr>
+            <td>Category</td>
+            <td>
+            <div class="col-sm-6">
+              <select name="category" class="form-control">
+                <option selected>-- Select Category --</option>
+                <?php foreach ($cdata as $categoryid) { ?>
+                <option value="<?=$categoryid['category_name']?>"><?=$categoryid['category_name']?></option>
+                <?php } ?>
+              </select>
+            </div>
+            </td>
            </tr>
            <tr>
             <td colspan="2">
@@ -72,6 +87,7 @@ if($aksi=='aksi_add'){
     $slug = $rowdata->slug;
     $text = $rowdata->text;
     $tags = $rowdata->tags;
+    $category = $rowdata->category;
     $publish = $rowdata->publish;
     date_default_timezone_set("Asia/Jakarta");
     $date = date("Y-m-d");
@@ -109,7 +125,8 @@ if($aksi=='aksi_add'){
             <td>Text</td>
             <td>
             <div class="col-sm-6">
-              <textarea name="text" cols="120" rows="30"><?=$text?></textarea>
+              <textarea name="text" id="content"><?=$text?></textarea>
+              <?php echo display_ckeditor($ckeditor); ?>
               <input type="hidden" name="publish" class="form-control" value="<?=$date?>">
             </div>
             </td>
@@ -121,6 +138,19 @@ if($aksi=='aksi_add'){
                   <input type="text" name="tags" class="form-control" value="<?=$tags?>">
               </div>
               </td>
+           </tr>
+           <tr>
+            <td>Category</td>
+            <td>
+            <div class="col-sm-6">
+              <select name="category" class="form-control">
+                <option>-- Select Category --</option>
+                <?php foreach ($cdata as $categoryid) { ?>
+                <option value="<?=$categoryid['category_name']?>" <?php if ($categoryid['category_name'] == $category) { echo 'selected'; } ?>><?=$categoryid['category_name']?></option>
+                <?php } ?>
+              </select>
+            </div>
+            </td>
            </tr>
            <tr>
             <td colspan="2">
