@@ -51,15 +51,15 @@ class User_model extends CI_Model {
 			$message = 'Dear User,<br><br> Please click on the below activation link to verify your email address<br><br>
         <a href=\''.base_url('confirmEmail/').''.md5($receiver).'\'>'.base_url('confirmEmail/').''. md5($receiver) .'</a><br><br>Thanks';
 
-      /*
-			* If your setting smtp with gmail
-			* Read https://support.google.com/accounts/answer/6010255?hl=en
-			*/
+	/*
+	* If your setting smtp with gmail
+	* Read https://support.google.com/accounts/answer/6010255?hl=en
+	*/
       $config['protocol'] = 'smtp';
       $config['smtp_host'] = 'ssl://smtp.googlemail.com';
       $config['smtp_port'] = 465;
-      $config['smtp_user'] = 'h3xagoncontact@gmail.com'; // insert your email account gmail
-      $config['smtp_pass'] = '081314502035Denny'; // insert your password email account gmail
+      $config['smtp_user'] = 'your_username@gmail.com'; // insert your email account gmail
+      $config['smtp_pass'] = 'your_password_email'; // insert your password email account gmail
       $config['mailtype'] = 'html';
       $config['charset'] = 'iso-8859-1';
       $config['wordwrap'] = 'TRUE';
