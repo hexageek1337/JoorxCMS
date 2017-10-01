@@ -34,6 +34,14 @@
     </url>
     <?php } ?>
 
+    <?php foreach($dataq as $joorx) { ?>
+    <url>
+        <loc><?= base_url('blog/category/').$joorx['category_name'] ?></loc>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <?php } ?>
+
     <?php foreach($data as $tags) { ?>
     <?php $all_tags = explode(',' ,$tags['tags']); foreach ($all_tags as $one_tag){ ?>
     <url>
