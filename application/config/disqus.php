@@ -13,7 +13,7 @@
 | Usage: Specify your forum shortname as string.
 |
 */
-$config['disqus_shortname'] = 'joorx-cms'; // sesuaikan dengan url disqus kalian.
+$config['disqus_shortname'] = ''; // sesuaikan dengan url disqus kalian.
 
 /*
 |--------------------------------------------------------------------------
