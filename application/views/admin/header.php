@@ -53,13 +53,12 @@
       <ul class="nav navbar-nav navbar-left">
         <li><a href="/admin/berita">Berita</a></li>
         <li><a href="/admin/category">Category</a></li>
-        <li><a href="/admin/kontak">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle fa-lg" aria-hidden="true"></i> <?php echo $session; ?></a>
           <ul class="dropdown-menu">
-            <li><a href="<?php echo base_url('user'); ?>">Setting</a></li>
+            <li><a href="<?php echo base_url('settings'); ?>">Setting</a></li>
             <li><a href="<?php echo base_url('logout'); ?>">Logout</a></li>
           </ul>
         </li>

@@ -15,10 +15,9 @@ class Admin extends CI_Controller {
 		// Load Model , Helper and Library
 		$this->load->library('slug', $configslug);
 		// Redirect session not available
-		$check_role = $this->m_login->get_user($this->session->userdata('userole_id'));
 		if($this->session->userdata('logged_in') != true){
 			redirect(base_url("login"), 'refresh');
-		} elseif ($check_role->role != "admin") {
+		} elseif ($this->session->userdata('is_confirmed') === 1 AND $this->session->userdata('status') === 0 AND $this->session->userdata('role') != 1) {
 			redirect(base_url("member"), 'refresh');
 		}
 	}

@@ -7,7 +7,7 @@
   <div class="panel-body">
     <p><?=$this->session->flashdata('pesan')?> </p>
       <a class="anchor" href="<?=base_url()?>admin/form/add"><button class="btn btn-sm btn-custom"><i class="glyphicon glyphicon-plus"></i> Tambah</button></a>
-      <table class="table table-striped">
+      <table class="table table-striped table-responsive">
         <thead>
          <tr>
          <th>No</th>

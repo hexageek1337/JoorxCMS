@@ -49,9 +49,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['login'] = 'login';
-$route['login/aksi_login'] = 'login/aksi_login';
-$route['logout'] = 'logout';
+$route['register'] = 'user/register';
+$route['login'] = 'user/login';
+$route['logout'] = 'user/logout';
+$route['confirmEmail/(:any)'] = 'user/confirmEmail/$1';
 // Routes Admin
 $route['admin'] = 'admin';
 $route['admin/berita'] = 'admin/berita';
@@ -77,13 +78,13 @@ $route['member/form/(:any)/(:num)'] = 'member/form/$1/$2';
 $route['member/formcat/(:any)'] = 'member/formcat/$1';
 $route['member/formcat/(:any)/(:num)'] = 'member/formcat/$1/$2';
 // Routes User Setting for Admin Role
-$route['user'] = 'user';
-$route['user/(:num)'] = 'user/$1';
-$route['user/detail/(:num)'] = 'user/detail/$1';
-$route['user/hapus/(:num)'] = 'user/hapus/$1';
-$route['user/form/(:any)'] = 'user/form/$1';
-$route['user/form/(:any)/(:num)'] = 'user/form/$1/$2';
-$route['user/index/(:num)'] = 'user/index/$2';
+$route['settings'] = 'settings';
+$route['settings/(:num)'] = 'settings/$1';
+$route['settings/detail/(:num)'] = 'settings/detail/$1';
+$route['settings/hapus/(:num)'] = 'settings/hapus/$1';
+$route['settings/form/(:any)'] = 'settings/form/$1';
+$route['settings/form/(:any)/(:num)'] = 'settings/form/$1/$2';
+$route['settings/index/(:num)'] = 'settings/index/$2';
 // Routes Blog
 $route['blog'] = 'blog';
 $route['blog/(:any)'] = 'blog/view/$1';

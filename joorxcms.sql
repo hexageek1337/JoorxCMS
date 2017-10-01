@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2017 at 01:07 PM
+-- Generation Time: Oct 01, 2017 at 01:51 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.28
 
@@ -19,29 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `joorx`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `admin`
---
-
-CREATE TABLE `admin` (
-  `id` int(11) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` text NOT NULL,
-  `photo` varchar(255) NOT NULL,
-  `role` enum('admin','member') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `admin`
---
-
-INSERT INTO `admin` (`id`, `username`, `password`, `photo`, `role`) VALUES
-(1, 'joorxcms', '$2y$10$/SaiAvcEVW/qEvdqNYVm0ehyHbWlWh0H176fCYaBszp8JkwEYIbvS', '15054990048_joorxcms.jpg', 'admin'),
-(2, 'admin', '$2y$10$rbclUYV1906g0e35pg3pyONBSdfAg1WnLXzJ8qByLWMFyX5/qkZxa', '15054989604_joorxcms.jpg', 'admin'),
-(3, 'member', '$2y$10$kueiSZOu0NkZ7mC0p8AQ4Ob9qzGTOz7PreU.BrCx1kp5/WWZVp1eC', '15054990639_joorxcms.jpg', 'member');
 
 -- --------------------------------------------------------
 
@@ -65,6 +42,19 @@ INSERT INTO `category` (`category_id`, `category_name`, `created_tgl`, `created_
 (2, 'laravel', '2017-09-29', 'admin'),
 (3, 'phalcon', '2017-09-29', 'admin'),
 (4, 'lumen', '2017-09-29', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ci_sessions`
+--
+
+CREATE TABLE `ci_sessions` (
+  `id` varchar(40) NOT NULL,
+  `ip_address` varchar(45) NOT NULL,
+  `timestamp` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `data` blob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -102,21 +92,50 @@ INSERT INTO `news` (`id`, `title`, `photo`, `slug`, `text`, `created`, `tags`, `
 (11, 'dawdaw awdawd awda', '15051482946_joorxcms.jpg', 'dawdaw-awdawd-awda', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus maximus aliquet aliquam. Cras quis elit vehicula nunc varius pretium ut a odio. Ut lectus dui, auctor non augue non, pulvinar facilisis urna. Aliquam erat volutpat. Suspendisse sed egestas odio, sit amet dignissim justo. Curabitur iaculis justo ante, eget eleifend dolor feugiat sed. Praesent et finibus ligula. Quisque sollicitudin nisi vitae leo varius, nec feugiat sapien volutpat. Duis consectetur feugiat lacus a interdum. Fusce gravida aliquam dolor, id placerat ante.\r\n<br /><br />\r\nEtiam egestas tellus neque, ut pellentesque arcu feugiat vitae. Vestibulum in consectetur nibh. Phasellus aliquam bibendum posuere. Quisque sed odio metus. Ut ut mollis tellus. Sed ac pellentesque urna. Aenean iaculis rhoncus gravida. Ut condimentum nibh non nisi vestibulum consectetur. Nullam id nisl arcu.\r\n<br /><br />\r\nPraesent posuere, est in semper molestie, justo lorem viverra dui, in varius est lectus id nibh. Mauris non nisl fermentum, facilisis justo in, efficitur ipsum. Maecenas massa velit, tempor et dignissim ut, mattis ut erat. Etiam ullamcorper, odio in vehicula placerat, neque augue pulvinar nunc, sit amet gravida metus lectus sit amet elit. Aenean tristique vitae nisi at condimentum. Vestibulum aliquam, orci vel efficitur varius, lectus eros cursus elit, et faucibus ex arcu sed ante. Cras eget rhoncus mi. Proin commodo, quam ut hendrerit gravida, dolor lectus dictum risus, non porta arcu elit at nunc. Sed ultricies, augue id congue ultrices, erat lorem molestie mauris, eget pulvinar nunc velit quis velit. Curabitur iaculis felis felis, ullamcorper rhoncus risus cursus vitae. Donec enim massa, sollicitudin quis dapibus id, dapibus vitae velit. Integer dictum turpis justo, ut vehicula sem luctus sed. Aenean consectetur ullamcorper massa eget tristique. Duis vel blandit augue. Sed accumsan, urna vel varius convallis, ante lorem lacinia quam, eget semper magna dui placerat purus.\r\n<br /><br />\r\nMorbi vel varius sem. Nulla facilisis accumsan pellentesque. Phasellus ultricies imperdiet turpis. Phasellus convallis leo turpis, vel dapibus orci sodales sed. Proin vel commodo metus. Proin non elementum diam. Nulla sodales posuere lacinia. Mauris porta rutrum lorem, in ultricies mi tristique sagittis. Etiam a dignissim velit. Sed ut velit augue. Morbi dapibus tortor sed elit blandit feugiat. Nullam accumsan eros non risus auctor, at pulvinar libero suscipit. Nunc sapien sapien, sollicitudin quis dui a, placerat sagittis neque. Cras fringilla pharetra aliquet. Cras lacinia laoreet lacinia. Sed facilisis nec est at ornare.\r\n<br /><br />\r\nFusce sit amet ornare enim. Donec bibendum luctus nisl ut euismod. Ut aliquet semper mi, et luctus leo euismod ut. Ut lacinia vestibulum tortor. Suspendisse et maximus ex. Morbi cursus est vitae sagittis commodo. Quisque congue, nunc vel malesuada molestie, dui felis luctus ligula, nec pellentesque purus ipsum quis eros. Nulla laoreet magna id velit mattis, sed condimentum sapien mattis. Etiam eu mauris tempor, tincidunt enim non, lacinia nulla.', 'admin', 'php,sql,codeigniter,framework', 'phalcon', '2017-09-11'),
 (12, 'Omankutiraj Mantab', 'QuoteDaily_BukanPenikmatWarisanORTU.jpg', 'omankutiraj-mantab', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus maximus aliquet aliquam. Cras quis elit vehicula nunc varius pretium ut a odio. Ut lectus dui, auctor non augue non, pulvinar facilisis urna. Aliquam erat volutpat. Suspendisse sed egestas odio, sit amet dignissim justo. Curabitur iaculis justo ante, eget eleifend dolor feugiat sed. Praesent et finibus ligula. Quisque sollicitudin nisi vitae leo varius, nec feugiat sapien volutpat. Duis consectetur feugiat lacus a interdum. Fusce gravida aliquam dolor, id placerat ante.\r\n<br /><br />\r\nEtiam egestas tellus neque, ut pellentesque arcu feugiat vitae. Vestibulum in consectetur nibh. Phasellus aliquam bibendum posuere. Quisque sed odio metus. Ut ut mollis tellus. Sed ac pellentesque urna. Aenean iaculis rhoncus gravida. Ut condimentum nibh non nisi vestibulum consectetur. Nullam id nisl arcu.\r\n<br /><br />\r\nPraesent posuere, est in semper molestie, justo lorem viverra dui, in varius est lectus id nibh. Mauris non nisl fermentum, facilisis justo in, efficitur ipsum. Maecenas massa velit, tempor et dignissim ut, mattis ut erat. Etiam ullamcorper, odio in vehicula placerat, neque augue pulvinar nunc, sit amet gravida metus lectus sit amet elit. Aenean tristique vitae nisi at condimentum. Vestibulum aliquam, orci vel efficitur varius, lectus eros cursus elit, et faucibus ex arcu sed ante. Cras eget rhoncus mi. Proin commodo, quam ut hendrerit gravida, dolor lectus dictum risus, non porta arcu elit at nunc. Sed ultricies, augue id congue ultrices, erat lorem molestie mauris, eget pulvinar nunc velit quis velit. Curabitur iaculis felis felis, ullamcorper rhoncus risus cursus vitae. Donec enim massa, sollicitudin quis dapibus id, dapibus vitae velit. Integer dictum turpis justo, ut vehicula sem luctus sed. Aenean consectetur ullamcorper massa eget tristique. Duis vel blandit augue. Sed accumsan, urna vel varius convallis, ante lorem lacinia quam, eget semper magna dui placerat purus.\r\n<br /><br />\r\nMorbi vel varius sem. Nulla facilisis accumsan pellentesque. Phasellus ultricies imperdiet turpis. Phasellus convallis leo turpis, vel dapibus orci sodales sed. Proin vel commodo metus. Proin non elementum diam. Nulla sodales posuere lacinia. Mauris porta rutrum lorem, in ultricies mi tristique sagittis. Etiam a dignissim velit. Sed ut velit augue. Morbi dapibus tortor sed elit blandit feugiat. Nullam accumsan eros non risus auctor, at pulvinar libero suscipit. Nunc sapien sapien, sollicitudin quis dui a, placerat sagittis neque. Cras fringilla pharetra aliquet. Cras lacinia laoreet lacinia. Sed facilisis nec est at ornare.\r\n<br /><br />\r\nFusce sit amet ornare enim. Donec bibendum luctus nisl ut euismod. Ut aliquet semper mi, et luctus leo euismod ut. Ut lacinia vestibulum tortor. Suspendisse et maximus ex. Morbi cursus est vitae sagittis commodo. Quisque congue, nunc vel malesuada molestie, dui felis luctus ligula, nec pellentesque purus ipsum quis eros. Nulla laoreet magna id velit mattis, sed condimentum sapien mattis. Etiam eu mauris tempor, tincidunt enim non, lacinia nulla.', 'joorxcms', 'php,sql,codeigniter,framework', 'lumen', '2017-09-10');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `username` varchar(255) NOT NULL DEFAULT '',
+  `email` varchar(255) NOT NULL DEFAULT '',
+  `password` varchar(255) NOT NULL DEFAULT '',
+  `avatar` varchar(255) DEFAULT 'default.jpg',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `is_admin` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `is_confirmed` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `is_deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `avatar`, `created_at`, `updated_at`, `is_admin`, `is_confirmed`, `is_deleted`) VALUES
+(1, 'admin', 'sealgeek@gmail.com', '$2y$10$mru.Qm919VUkgoAqFnQcwul2ASfvdj9zgQz2umKLkx76jlnncnYJW', 'default.jpg', '2017-10-01 07:09:50', '2017-10-01 07:11:00', 1, 1, 0),
+(2, 'member', 'sealgeek2@gmail.com', '$2y$10$D3.Y.id3LnI7RgDl45eoau5iEfKwaa4CcQX5n3ue5h3.zSC/dNvjW', 'default.jpg', '2017-10-01 07:19:41', '2017-10-01 07:21:00', 0, 1, 0),
+(3, 'joorxcms', 'hexageek1337@gmail.com', '$2y$10$hsXi5M3rTh/8rumshIo16u2MGuSi5iQwKM180SOn9Z.G.ApDXC36K', '15068540413_joorxcms.jpg', '2017-10-01 17:34:01', NULL, 1, 1, 0);
+
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`category_id`);
+
+--
+-- Indexes for table `ci_sessions`
+--
+ALTER TABLE `ci_sessions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ci_sessions_timestamp` (`timestamp`);
 
 --
 -- Indexes for table `news`
@@ -126,14 +145,15 @@ ALTER TABLE `news`
   ADD KEY `slug` (`slug`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
---
--- AUTO_INCREMENT for table `admin`
---
-ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `category`
 --
@@ -144,6 +164,11 @@ ALTER TABLE `category`
 --
 ALTER TABLE `news`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('socialstats','disqus','encrypt','encryption','upload','pagination','database','session','form_validation');
+$autoload['libraries'] = array('email','disqus','encrypt','encryption','upload','pagination','database','session','form_validation');
 
 /*
 | -------------------------------------------------------------------
@@ -132,4 +132,4 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('admincrud','news_model','m_login');
+$autoload['model'] = array('admincrud','news_model','user_model');

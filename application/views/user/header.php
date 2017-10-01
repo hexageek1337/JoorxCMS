@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <meta name="description" content="<?php echo $this->config->item('joorxcms_description'); ?>">
 <meta name="keywords" content="<?php echo $this->config->item('joorxcms_keywords'); ?>">
 <meta http-equiv="Copyright" content="<?php echo $this->config->item('joorxcms_copyright'); ?>">
@@ -62,6 +62,10 @@
         <li><a href="/tentang">About</a></li>
         <li><a href="/blog">Blog</a></li>
         <li><a href="/kontak">Contact</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="<?=base_url('login')?>">Login</a></li>
+        <li><a href="<?=base_url('register')?>">Register</a></li>
       </ul>
     </div>
   </div>
