@@ -25,6 +25,7 @@ class Joorx extends CI_Controller {
 
 	public function sitemap() {
 		$data['data'] = $this->news_model->getall_news();
+		$data['dataq'] = $this->news_model->getall_category();
 		header("Content-Type: text/xml;charset=iso-8859-1");
 
 		// Load view
