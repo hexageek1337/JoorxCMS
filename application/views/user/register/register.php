@@ -42,6 +42,8 @@
 					<input type="password" class="form-control" id="password_confirm" name="password_confirm" placeholder="Confirm your password">
 					<p class="help-block">Must match your password</p>
 				</div>
+				<?=$captchagetWidget?>
+				<?=$captchagetScriptTag?>
 				<div class="form-group">
 					<input type="submit" class="btn btn-default" value="Register">
 				</div>

@@ -30,6 +30,8 @@
 					<label for="password">Password</label>
 					<input type="password" class="form-control" id="password" name="password" placeholder="Your password">
 				</div>
+				<?=$captchagetWidget?>
+				<?=$captchagetScriptTag?>
 				<div class="form-group">
 					<input type="submit" class="btn btn-default" value="Login">
 				</div>

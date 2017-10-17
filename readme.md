@@ -11,11 +11,13 @@ Joorx CMS an innovation that can provide new solutions for its users, of course 
 
 # Installation
 - Import file joorxcms.sql to your database name
-- Open application/config/config.php and change base url to url your site
-- Open application/config/database.php and change config your database
-- Open application/config/joorxcms.php and change setting seo your site
-- Open application/config/disqus.php and change your shortname disqus
-- Open application/models/user_model.php and setting your smtp in function sendEmail
+- Open application/config/config.php with text editor and change base_url to url your site
+- Open application/config/database.php with text editor and change config your database
+- Open application/config/joorxcms.php with text editor and change setting seo your site
+- Open application/config/disqus.php with text editor and change your shortname disqus
+- Open application/config/recaptcha.php with text editor and setting your site key & secret key
+- Open application/models/user_model.php with text editor and setting your smtp in function sendEmail
+- Open robots.txt with text editor and setting robots for your sites
 
 # :heavy_exclamation_mark: Important
 - Change user login default for avoid piercing login page

@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('email','disqus','encrypt','encryption','upload','pagination','database','session','form_validation');
+$autoload['libraries'] = array('recaptcha','email','disqus','encrypt','encryption','upload','pagination','database','session','form_validation');
 
 /*
 | -------------------------------------------------------------------
@@ -103,7 +103,7 @@ $autoload['helper'] = array('security','form','url','ckeditor','share','text');
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload['config'] = array('joorxcms');
+$autoload['config'] = array('joorxcms','recaptcha');
 
 /*
 | -------------------------------------------------------------------

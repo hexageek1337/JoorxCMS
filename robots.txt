@@ -2,4 +2,4 @@ User-agent: *
 Disallow: /admin/
 Disallow: /member/
 Disallow: /login/
-Sitemap: http://localhost/p/sitemap.xml
+Sitemap: http://yoursite.com/p/sitemap.xml

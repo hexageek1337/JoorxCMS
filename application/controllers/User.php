@@ -45,7 +45,8 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('password_confirm', 'Confirm Password', 'trim|required|xss_clean|min_length[6]|matches[password]');
 
 		if ($this->form_validation->run() === false) {
-
+			$data->captchagetWidget = $this->recaptcha->getWidget();
+			$data->captchagetScriptTag = $this->recaptcha->getScriptTag();
 			// validation not ok, send validation errors to the view
 			$this->load->view('user/header');
 			$this->load->view('user/register/register', $data);
@@ -57,32 +58,52 @@ class User extends CI_Controller {
 			$username = addslashes($this->input->post('username'));
 			$email    = addslashes($this->input->post('email'));
 			$password = addslashes($this->input->post('password'));
+			// Recaptcha variables
+			$recaptcha = $this->input->post('g-recaptcha-response');
+			$response = $this->recaptcha->verifyResponse($recaptcha);
 
-			if ($this->user_model->create_user($username, $email, $password)) {
+			if (isset($response['success']) AND $response['success'] === true) {
+				if ($this->user_model->create_user($username, $email, $password)) {
 
-				// user creation ok
-				if($this->user_model->sendEmail($email)){
-					$this->session->set_flashdata('pesan', '<div class="alert alert-success text-center">Successfully registered. Please confirm the mail that has been sent to your email. </div>');
-					$this->load->view('user/header');
-					$this->load->view('user/register/register');
-					$this->load->view('user/footer');
-        } else {
-          $this->session->set_flashdata('pesan', '<div class="alert alert-danger text-center">Failed!! Please try again.</div>');
-					$this->load->view('user/header');
-					$this->load->view('user/register/register');
-					$this->load->view('user/footer');
-        }
+				  // user creation ok
+				  if($this->user_model->sendEmail($email)){
+						$data->captchagetWidget = $this->recaptcha->getWidget();
+					  $data->captchagetScriptTag = $this->recaptcha->getScriptTag();
+				    $this->session->set_flashdata('pesan', '<div class="alert alert-success text-center">Successfully registered. Please confirm the mail that has been sent to your email. </div>');
+				    $this->load->view('user/header');
+				    $this->load->view('user/register/register', $data);
+				    $this->load->view('user/footer');
+				  } else {
+						$data->captchagetWidget = $this->recaptcha->getWidget();
+					  $data->captchagetScriptTag = $this->recaptcha->getScriptTag();
+				    $this->session->set_flashdata('pesan', '<div class="alert alert-danger text-center">Failed!! Please try again.</div>');
+				    $this->load->view('user/header');
+				    $this->load->view('user/register/register', $data);
+				    $this->load->view('user/footer');
+				  }
 
+				} else {
+				  $data->captchagetWidget = $this->recaptcha->getWidget();
+				  $data->captchagetScriptTag = $this->recaptcha->getScriptTag();
+				  // user creation failed, this should never happen
+				  $data->error = 'There was a problem creating your new account. Please try again.';
+
+				  // send error to the view
+				  $this->load->view('user/header');
+				  $this->load->view('user/register/register', $data);
+				  $this->load->view('user/footer');
+
+				}
 			} else {
-
+				$data->captchagetWidget = $this->recaptcha->getWidget();
+				$data->captchagetScriptTag = $this->recaptcha->getScriptTag();
 				// user creation failed, this should never happen
-				$data->error = 'There was a problem creating your new account. Please try again.';
+				$data->error = 'There was a problem creating your new account. Please check your captcha.';
 
 				// send error to the view
 				$this->load->view('user/header');
 				$this->load->view('user/register/register', $data);
 				$this->load->view('user/footer');
-
 			}
 
 		}
@@ -121,10 +142,11 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
 
 		if ($this->form_validation->run() == false) {
-
+			$data->captchagetWidget = $this->recaptcha->getWidget();
+			$data->captchagetScriptTag = $this->recaptcha->getScriptTag();
 			// validation not ok, send validation errors to the view
 			$this->load->view('user/header');
-			$this->load->view('user/login/login');
+			$this->load->view('user/login/login', $data);
 			$this->load->view('user/footer');
 
 		} else {
@@ -132,40 +154,56 @@ class User extends CI_Controller {
 			// set variables from the form
 			$username = addslashes($this->input->post('username'));
 			$password = addslashes($this->input->post('password'));
+			// Recaptcha variables
+			$recaptcha = $this->input->post('g-recaptcha-response');
+			$response = $this->recaptcha->verifyResponse($recaptcha);
 
-			if ($this->user_model->resolve_user_login($username, $password)) {
+			if (isset($response['success']) AND $response['success'] === true) {
+				if ($this->user_model->resolve_user_login($username, $password)) {
 
-				$user_id = $this->user_model->get_user_id_from_username($username);
-				$user    = $this->user_model->get_user($user_id);
+				  $user_id = $this->user_model->get_user_id_from_username($username);
+				  $user    = $this->user_model->get_user($user_id);
 
-				// set session user datas
-				$data_session = array(
-					'user_id' => intval($user->id),
-					'nama' => $user->username,
-					'is_confirmed' => intval($user->is_confirmed),
-					'role' => intval($user->is_admin),
-					'status' => intval($user->is_deleted),
-					'logged_in' => true
-				);
-				$this->session->set_userdata($data_session);
+				  // set session user datas
+				  $data_session = array(
+				    'user_id' => intval($user->id),
+				    'nama' => $user->username,
+				    'is_confirmed' => intval($user->is_confirmed),
+				    'role' => intval($user->is_admin),
+				    'status' => intval($user->is_deleted),
+				    'logged_in' => true
+				  );
+				  $this->session->set_userdata($data_session);
 
-				// check role for redirect
-				if ($user->is_admin == 0) {
-					redirect(base_url('member'), 'refresh');
+				  // check role for redirect
+				  if ($user->is_admin == 0) {
+				    redirect(base_url('member'), 'refresh');
+				  } else {
+				    redirect(base_url('admin'), 'refresh');
+				  }
+
 				} else {
-					redirect(base_url('admin'), 'refresh');
+				  $data->captchagetWidget = $this->recaptcha->getWidget();
+				  $data->captchagetScriptTag = $this->recaptcha->getScriptTag();
+				  // login failed
+				  $data->error = 'Wrong username or password.';
+
+				  // send error to the view
+				  $this->load->view('user/header');
+				  $this->load->view('user/login/login', $data);
+				  $this->load->view('user/footer');
+
 				}
-
 			} else {
-
-				// login failed
-				$data->error = 'Wrong username or password.';
+				$data->captchagetWidget = $this->recaptcha->getWidget();
+				$data->captchagetScriptTag = $this->recaptcha->getScriptTag();
+				// user creation failed, this should never happen
+				$data->error = 'There was a problem creating your new account. Please check your captcha.';
 
 				// send error to the view
 				$this->load->view('user/header');
 				$this->load->view('user/login/login', $data);
 				$this->load->view('user/footer');
-
 			}
 
 		}
