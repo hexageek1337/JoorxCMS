@@ -167,7 +167,7 @@ class User extends CI_Controller {
 				  // set session user datas
 				  $data_session = array(
 				    'user_id' => intval($user->id),
-				    'nama' => $user->username,
+				    'nama' => addslashes($user->username),
 				    'is_confirmed' => intval($user->is_confirmed),
 				    'role' => intval($user->is_admin),
 				    'status' => intval($user->is_deleted),

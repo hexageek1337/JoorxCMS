@@ -130,10 +130,10 @@ class Member extends CI_Controller {
 				// Config Session
 				$session = addslashes($this->session->userdata('nama'));
         // ambil variabel dari form
-        $id = intval($this->input->post('id'));
-        $name = addslashes($this->input->post('category'));
-				$tgl = addslashes($this->input->post('createdtgl'));
-        $by = addslashes($this->input->post('createdby'));
+        $id = intval($this->input->post('id', TRUE));
+        $name = addslashes($this->input->post('category', TRUE));
+				$tgl = addslashes($this->input->post('createdtgl', TRUE));
+        $by = addslashes($this->input->post('createdby', TRUE));
 				$lengthname = strlen($name);
 
 				$csrf = array(
@@ -178,7 +178,6 @@ class Member extends CI_Controller {
 	                'created_tgl'  => $datess,
 	                'created_by' => $session
 	            );
-							$data = $this->security->xss_clean($data);
 	            $this->admincrud->get_insert('category', $data); //model insert data barang
 	            $this->session->set_flashdata("pesan", "<div class=\"alert alert-success\" id=\"alert\"><i class=\"glyphicon glyphicon-ok\"></i> Data berhasil di simpan</div>"); //pesan yang tampil setalah berhasil di insert
 	            redirect('member/category', 'refresh');
@@ -196,7 +195,6 @@ class Member extends CI_Controller {
 								'created_tgl'  => $datess,
 								'created_by' => $session
 	            );
-							$data = $this->security->xss_clean($data);
 	            $this->admincrud->getcat_update('category', $id,$data); //modal update data barang
 	            $this->session->set_flashdata("pesan", "<div class=\"alert alert-success\" id=\"alert\"><i class=\"glyphicon glyphicon-ok\"></i> Data berhasil di update</div>"); //pesan yang tampil setelah berhasil di update
 	            redirect('member/category', 'refresh');
@@ -224,15 +222,15 @@ class Member extends CI_Controller {
 				// initialize setup config upload
 				$this->upload->initialize($config);
         // ambil variabel dari form
-        $id = intval($this->input->post('id'));
-        $title = addslashes($this->input->post('title'));
+        $id = intval($this->input->post('id', TRUE));
+        $title = addslashes($this->input->post('title', TRUE));
         $photo = $imagename;
         $slug = addslashes($this->slug->create_uri($title));
         $text = $this->input->post('text');
 				$createdby = addslashes($this->session->userdata('nama'));
-				$tags = addslashes($this->input->post('tags'));
-				$category = addslashes($this->input->post('category'));
-        $publish = addslashes($this->input->post('publish'));
+				$tags = addslashes($this->input->post('tags', TRUE));
+				$category = addslashes($this->input->post('category', TRUE));
+        $publish = addslashes($this->input->post('publish', TRUE));
 				$lengthtitle = strlen($title);
 
 				$csrf = array(
@@ -369,7 +367,6 @@ class Member extends CI_Controller {
 									'categoryID' => $category,
 	                'publish'  => $publish
 	            );
-							$data = $this->security->xss_clean($data);
 	            $this->admincrud->get_insert('news', $data); //model insert data barang
 	            $this->session->set_flashdata("pesan", "<div class=\"alert alert-success\" id=\"alert\"><i class=\"glyphicon glyphicon-ok\"></i> Data berhasil di simpan</div>"); //pesan yang tampil setalah berhasil di insert
 	            redirect('member/berita', 'refresh');
@@ -407,7 +404,6 @@ class Member extends CI_Controller {
 								'categoryID' => $category,
 								'publish'  => $publish
 	            );
-							$data = $this->security->xss_clean($data);
 	            $this->admincrud->get_update('news', $id,$data); //modal update data barang
 	            $this->session->set_flashdata("pesan", "<div class=\"alert alert-success\" id=\"alert\"><i class=\"glyphicon glyphicon-ok\"></i> Data berhasil di update</div>"); //pesan yang tampil setelah berhasil di update
 	            redirect('member/berita', 'refresh');

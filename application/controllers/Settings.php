@@ -78,13 +78,13 @@ class Settings extends CI_Controller {
 				// initialize setup config upload
 				$this->upload->initialize($config);
         // ambil variabel dari form
-        $id = intval($this->input->post('id'));
-				$email = addslashes($this->input->post('email'));
-        $username = addslashes($this->input->post('username'));
+        $id = intval($this->input->post('id', TRUE));
+				$email = addslashes($this->input->post('email', TRUE));
+        $username = addslashes($this->input->post('username', TRUE));
         $avatar = $imagename;
-        $password = addslashes($this->input->post('password'));
-        $role = intval($this->input->post('role'));
-				$banned = intval($this->input->post('status'));
+        $password = addslashes($this->input->post('password', TRUE));
+        $role = intval($this->input->post('role', TRUE));
+				$banned = intval($this->input->post('status', TRUE));
 				$lengthpassword = strlen($password);
 
 				$csrf = array(
@@ -113,6 +113,9 @@ class Settings extends CI_Controller {
         } else if ($mau_ke == "aksi_add") {//jika uri segmentnya aksi_add sebagai fungsi untuk insert
 						if ($email === '') {
 							$this->session->set_flashdata("pesan", "<div class=\"alert alert-danger\" id=\"alert\"><i class=\"glyphicon glyphicon-remove\"></i> Fill Form Email!</div>"); //pesan yang tampil setalah berhasil di insert
+							redirect('settings', 'refresh');
+						} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+							$this->session->set_flashdata("pesan", "<div class=\"alert alert-danger\" id=\"alert\"><i class=\"glyphicon glyphicon-remove\"></i> Invalid email format!</div>"); //pesan yang tampil setalah berhasil di insert
 							redirect('settings', 'refresh');
 						} elseif ($username === '') {
 							$this->session->set_flashdata("pesan", "<div class=\"alert alert-danger\" id=\"alert\"><i class=\"glyphicon glyphicon-remove\"></i> Fill Form Username!</div>"); //pesan yang tampil setalah berhasil di insert
@@ -144,7 +147,6 @@ class Settings extends CI_Controller {
 	                'is_admin'=> $role,
 									'is_deleted' => $banned
 	            );
-							$data = $this->security->xss_clean($data);
 	            $this->admincrud->get_insert('users', $data); //model insert data barang
 	            $this->session->set_flashdata("pesan", "<div class=\"alert alert-success\" id=\"alert\"><i class=\"glyphicon glyphicon-ok\"></i> Data berhasil di simpan</div>"); //pesan yang tampil setalah berhasil di insert
 	            redirect('settings', 'refresh');
@@ -186,7 +188,6 @@ class Settings extends CI_Controller {
 								'is_admin'=> $role,
 								'is_deleted' => $banned
 	            );
-							$data = $this->security->xss_clean($data);
 	            $this->admincrud->get_update('users', $id,$data); //modal update data barang
 	            $this->session->set_flashdata("pesan", "<div class=\"alert alert-success\" id=\"alert\"><i class=\"glyphicon glyphicon-ok\"></i> Data berhasil di update</div>"); //pesan yang tampil setelah berhasil di update
 	            redirect('settings', 'refresh');

@@ -46,7 +46,7 @@ class User_model extends CI_Model {
 	//send confirm mail
   public function sendEmail($receiver){
       $from = "noreply@joorx.com"; // free setting
-      $subject = 'Verify account JoorxCMS'; // change this subject
+      $subject = 'Verify Account Register'; // change this subject
 			// Warning , for you can change this message body
 			$message = 'Dear User,<br><br> Please click on the below activation link to verify your email address<br><br>
         <a href=\''.base_url('confirmEmail/').''.md5($receiver).'\'>'.base_url('confirmEmail/').''. md5($receiver) .'</a><br><br>Thanks';
@@ -58,8 +58,8 @@ class User_model extends CI_Model {
       $config['protocol'] = 'smtp';
       $config['smtp_host'] = 'ssl://smtp.googlemail.com';
       $config['smtp_port'] = 465;
-      $config['smtp_user'] = 'your_username@gmail.com'; // insert your email account gmail
-      $config['smtp_pass'] = 'your_password_google_account'; // insert your password email account gmail
+      $config['smtp_user'] = 'username_email@gmail.com'; // insert your email account gmail
+      $config['smtp_pass'] = 'password_account_email'; // insert your password email account gmail
       $config['mailtype'] = 'html';
       $config['charset'] = 'iso-8859-1';
       $config['wordwrap'] = 'TRUE';
