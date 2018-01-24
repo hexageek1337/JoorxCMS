@@ -51,8 +51,8 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-left">
-        <li><a href="/member/berita">Berita</a></li>
-        <li><a href="/member/category">Category</a></li>
+        <li><a href="<?php echo base_url(); ?>member/berita">Berita</a></li>
+        <li><a href="<?php echo base_url(); ?>member/category">Category</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
